@@ -1,0 +1,77 @@
+body{
+  margin: 0;
+}
+.vertical-1{
+  padding: 15px;
+  transform: rotate(-270deg);
+  position: absolute;
+  top: 250px;
+  left: -100px;
+  border-radius: 15px;
+  background-color: black; 
+  width: 360px;
+  opacity: 80%; 
+  text-align:center; 
+  display:inline-flex;
+}
+.vertical-2{
+  padding: 15px;
+  transform: rotate(-270deg);
+  position: absolute;
+  top: 750px;
+  left: -100px;
+  border-radius: 15px;
+  background-color: black; 
+  width: 360px;
+  opacity: 80%; 
+  text-align:center; 
+  display:inline-flex;
+}
+.vertical-3{
+  padding: 15px;
+  transform: rotate(-270deg);
+  position: absolute;
+  top: 250px;
+  right: -100px;
+  border-radius: 15px;
+  background-color: black; 
+  width: 360px;
+  opacity: 80%; 
+  text-align:center; 
+  display:inline-flex;
+}
+.vertical-4{
+  padding: 15px;
+  transform: rotate(-270deg);
+  position: absolute;
+  top: 750px;
+  right: -100px;
+  border-radius: 15px;
+  background-color: black; 
+  width: 360px;
+  opacity: 80%; 
+  text-align:center; 
+  display:inline-flex;
+}
+.camera{
+  position: absolute;
+  bottom: 0;
+  left: 45%;
+  background-color: black;
+  padding: 5px;
+  border-radius: 20px;
+  opacity: 80% ;
+}
+.number{
+  margin: auto;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 10px;
+  color: white;
+  transform: rotate(270deg);
+}
+.prueba{
+  background-color: pink;
+  width: 100%;
+  height: 100%;
+}
