@@ -1,0 +1,33 @@
+<div class="prueba">
+    <div class="vertical-1">
+        <svg width="70" height="70" viewBox="0 0 100 100">
+            <polyline points="10,-40 80,50 10,140" stroke="white" stroke-width="3" fill="none"/>
+        </svg>
+        <input type="range" min="0" max="100" id="depth-1" style="width: 160px;">
+        <p class="number">2</p>
+    </div>    
+    <div class="vertical-2">
+        <svg width="70" height="70" viewBox="0 0 100 100">
+            <polyline points="10,-40 80,50 10,140" stroke="white" stroke-width="3" fill="none"/>
+        </svg>
+        <input type="range" min="0" max="100" id="depth-2" style="width: 160px;">
+        <p class="number">3</p>
+    </div>   
+    <div class="vertical-3">
+        <svg width="70" height="70" viewBox="0 0 100 100">
+            <polyline points="10,-40 80,50 10,140" stroke="white" stroke-width="3" fill="none"/>
+        </svg>
+        <input type="range" min="0" max="100" id="depth-3" style="width: 160px;">
+        <p class="number">1</p>
+    </div>   
+    <div class="vertical-4">
+        <svg width="70" height="70" viewBox="0 0 100 100">
+            <polyline points="10,-40 80,50 10,140" stroke="white" stroke-width="3" fill="none"/>
+        </svg>
+        <input type="range" min="0" max="100" id="depth-4" style="width: 160px;">
+        <p class="number">4</p>
+    </div>  
+</div>
+<div class="camera">
+    <input type="range" min="0" max="100" id="camera" style="width: 160px;">
+</div>   
