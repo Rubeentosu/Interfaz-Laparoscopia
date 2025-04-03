@@ -1,77 +1,68 @@
-body{
+body {
   margin: 0;
+  height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la pantalla */
 }
-.vertical-1{
+
+.prueba {
+  display: flex;
+  justify-content: space-between; /* Para distribuir los elementos */
+  align-items: center;
+  height: 100%; /* Ocupa toda la altura */
+}
+
+.vertical-1, .vertical-2, .vertical-3, .vertical-4 {
   padding: 15px;
   transform: rotate(-270deg);
-  position: absolute;
-  top: 250px;
-  left: -100px;
   border-radius: 15px;
   background-color: black; 
-  width: 360px;
-  opacity: 80%; 
-  text-align:center; 
-  display:inline-flex;
+  width: 270px;
+  opacity: 80%;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
 }
-.vertical-2{
-  padding: 15px;
-  transform: rotate(-270deg);
+
+.vertical-1 {
+  /* Usamos % en lugar de px para que sea más flexible */
   position: absolute;
-  top: 750px;
-  left: -100px;
-  border-radius: 15px;
-  background-color: black; 
-  width: 360px;
-  opacity: 80%; 
-  text-align:center; 
-  display:inline-flex;
+  top: 30%;
+  right: 0%;
 }
-.vertical-3{
-  padding: 15px;
-  transform: rotate(-270deg);
+
+.vertical-2 {
   position: absolute;
-  top: 250px;
-  right: -100px;
-  border-radius: 15px;
-  background-color: black; 
-  width: 360px;
-  opacity: 80%; 
-  text-align:center; 
-  display:inline-flex;
+  top: 70%;
 }
-.vertical-4{
-  padding: 15px;
-  transform: rotate(-270deg);
+
+.vertical-3 {
   position: absolute;
-  top: 750px;
-  right: -100px;
-  border-radius: 15px;
-  background-color: black; 
-  width: 360px;
-  opacity: 80%; 
-  text-align:center; 
-  display:inline-flex;
+  top: 30%;
 }
-.camera{
+
+.vertical-4 {
   position: absolute;
-  bottom: 0;
-  left: 45%;
+  top: 70%;
+  right: 0%;
+}
+
+.camera {
+  position: absolute;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%); /* Centra el div de la cámara */
   background-color: black;
   padding: 5px;
   border-radius: 20px;
-  opacity: 80% ;
+  opacity: 80%;
 }
-.number{
+
+.number {
   margin: auto;
   border: 1px solid white;
   border-radius: 50%;
-  padding: 10px;
+  padding: 5px;
+  width: 6%;
   color: white;
   transform: rotate(270deg);
 }
-.prueba{
-  background-color: pink;
-  width: 100%;
-  height: 100%;
-}
+
