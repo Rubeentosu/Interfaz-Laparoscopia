@@ -65,4 +65,56 @@ body {
   color: white;
   transform: rotate(270deg);
 }
+#camera{
+  -webkit-appearance: none;
+  height: 6px;
+  background: rgb(255, 255, 255);
+  border-radius: 3px;
+}
+#depth-4 {
+  position: absolute;
+  bottom: 45%; /* Ajusta la posición vertical */
+  left: 55%;
+  transform: translateX(-50%); /* Centra horizontalmente */
+  width: 50%; /* Ajusta el ancho según necesites */
+  max-width: 400px; /* Evita que sea demasiado grande */
+  -webkit-appearance: none;
+  height: 6px;
+  background: rgb(255, 255, 255);
+  border-radius: 3px;
+}
+
+/* Agregar las rayas verticales al final y al inicio */
+/* #camera::before,
+#camera::after,#depth-4::before,#depth-4::after {
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 20px;
+  background: rgb(255, 255, 255);
+  top: 50%;
+  transform: translateY(-50%);
+}
+#camera::before,#depth-4::before {
+  left: 0;
+}
+#camera::after,#depth-4::after {
+  right: 0;
+} */
+
+ /* Punto del control deslizante (thumb) */
+ #camera::-webkit-slider-thumb ,#depth-4::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 5px;
+  height: 20px;
+  background: red;
+  position: relative;
+}
+
+#camera::-moz-range-thumb,#depth-4::-moz-range-thumb {
+  width: 5px;
+  height: 20px;
+  border-radius: 50%;
+  background: red;
+}
 
