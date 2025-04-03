@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la pantalla */
+}
+
+.prueba {
+  display: flex;
+  justify-content: space-between; /* Para distribuir los elementos */
+  align-items: center;
+  height: 100%; /* Ocupa toda la altura */
+}
+
+.vertical-1, .vertical-2, .vertical-3, .vertical-4 {
+  padding: 15px;
+  transform: rotate(-270deg);
+  border-radius: 15px;
+  background-color: black; 
+  width: 270px;
+  opacity: 80%;
+  text-align: center;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.vertical-1 {
+  /* Usamos % en lugar de px para que sea más flexible */
+  position: absolute;
+  top: 30%;
+  right: 0%;
+}
+
+.vertical-2 {
+  position: absolute;
+  top: 70%;
+}
+
+.vertical-3 {
+  position: absolute;
+  top: 30%;
+}
+
+.vertical-4 {
+  position: absolute;
+  top: 70%;
+  right: 0%;
+}
+
+.camera {
+  position: absolute;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%); /* Centra el div de la cámara */
+  background-color: black;
+  padding: 5px;
+  border-radius: 20px;
+  opacity: 80%;
+}
+
+.number {
+  margin: auto;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 5px;
+  width: 6%;
+  color: white;
+  transform: rotate(270deg);
+}
+
