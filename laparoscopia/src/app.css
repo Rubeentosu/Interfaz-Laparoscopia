@@ -24,25 +24,25 @@ body {
 .vertical-1 {
   position: absolute;
   top: 30%;
-  right: -5%;
+  right: -4%;
 }
 
 .vertical-2 {
   position: absolute;
   top: 70%;
-  left: -5%;
+  left: -4%;
 }
 
 .vertical-3 {
   position: absolute;
   top: 30%;
-  left: -5%;
+  left: -4%;
 }
 
 .vertical-4 {
   position: absolute;
   top: 70%;
-  right: -5%;
+  right: -4%;
 }
 
 .camera {
@@ -107,6 +107,7 @@ body {
 @media screen and (max-width: 1024px) {
   .vertical-1, .vertical-2, .vertical-3, .vertical-4 {
     width: 220px;
+    height: 50px;
   }
 }
 
@@ -114,12 +115,14 @@ body {
 @media screen and (min-width: 1440px) {
   .vertical-1, .vertical-2, .vertical-3, .vertical-4 {
     width: 250px;
+    height: 50px;
   }
 }
 /* Pantallas de portátiles (1024px - 1440px) */
 @media screen and (min-width: 1024px) and (max-width: 1440px) {
   .vertical-1, .vertical-2, .vertical-3, .vertical-4 {
     width: 250px; /* Ajuste de tamaño intermedio */
+    height: 50px;
     padding: 12px; /* Levele reducción de padding */
   }
 
