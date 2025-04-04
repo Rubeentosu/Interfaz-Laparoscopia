@@ -16,3 +16,11 @@ function cambio() {
   document.getElementById("depth-4").value = 99;
 
 }
+
+eso.addEventListener("click", pinza);
+
+function pinza() {
+  let esto = document.getElementById("instrument-4");
+  //modificar segundo numero en el primer par y segundo numero en el tercer par
+  esto.setAttribute("points", "10,40 80,50 10,60");
+}
