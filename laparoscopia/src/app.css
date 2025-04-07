@@ -1,13 +1,14 @@
 body {
   margin: 0;
-  height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la pantalla */
+  height: 100vh;
+  background-color: antiquewhite;
 }
 
 .prueba {
   display: flex;
-  justify-content: space-between; /* Para distribuir los elementos */
+  justify-content: space-between; 
   align-items: center;
-  height: 100%; /* Ocupa toda la altura */
+  height: 100%;
 }
 
 .vertical-1, .vertical-2, .vertical-3, .vertical-4 {
@@ -27,13 +28,13 @@ body {
   right: -4%;
 }
 
-.vertical-2 {
+.vertical-3 {
   position: absolute;
   top: 70%;
   left: -4%;
 }
 
-.vertical-3 {
+.vertical-2 {
   position: absolute;
   top: 30%;
   left: -4%;
@@ -49,11 +50,31 @@ body {
   position: absolute;
   bottom: 0;
   left: 50%;
+  display: flex;
+  align-items:center ;
+  justify-content: center;
   transform: translateX(-50%);
   background-color: black;
   padding: 8px;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
+  opacity: 80%;
+}
+
+.messages {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  padding: 8px;
+  color: white;
+  height: 30px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
   opacity: 80%;
 }
 
@@ -86,7 +107,7 @@ body {
   -webkit-appearance: none;
   width: 5px;
   height: 25px;
-  background: red;
+  background: #00a2ff;
   position: relative;
 }
 
@@ -98,7 +119,7 @@ body {
   width: 5px;
   height: 20px;
   border-radius: 50%;
-  background: red;
+  background: #00a2ff;
 }
 
 /* Media Queries para distintas pantallas */
