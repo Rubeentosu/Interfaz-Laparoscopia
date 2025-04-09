@@ -4,33 +4,56 @@
     export let number;
     export let points;
 </script>
+
+<div class="vertical {position}" id="id-instrument1">
+    <svg width="70" height="70" viewBox="0 0 100 100">
+        <polyline
+            id="instrument-1"
+            {points}
+            stroke="white"
+            stroke-width="3"
+            fill="none"
+        />
+    </svg>
+    <input
+        type="range"
+        min="0"
+        max="100"
+        disabled
+        bind:value={depth}
+        id="depth"
+        style="width: 160px;"
+    />
+    <p class="number">{number}</p>
+</div>
+
 <style>
-    .vertical{
+    .vertical {
         padding: 15px;
         transform: rotate(-270deg);
         border-radius: 15px;
-        background-color: black; 
+        background-color: black;
         width: 270px;
         opacity: 80%;
         display: flex;
         align-items: center;
     }
-    .top-right{
+    .top-right {
         position: absolute;
         top: 30%;
         right: -4%;
     }
-    .top-left{
+    .top-left {
         position: absolute;
         top: 30%;
         left: -4%;
     }
-    .bottom-left{
+    .bottom-left {
         position: absolute;
         top: 70%;
         left: -4%;
     }
-    .bottom-right{
+    .bottom-right {
         position: absolute;
         top: 70%;
         right: -4%;
@@ -47,31 +70,46 @@
         margin-left: 6px;
     }
     #depth {
-    -webkit-appearance: none;
-    height: 6px;
-    background: rgb(255, 255, 255);
-    border-radius: 3px;
-    max-width: 400px;
+        -webkit-appearance: none;
+        height: 6px;
+        background: rgb(255, 255, 255);
+        border-radius: 3px;
+        max-width: 400px;
     }
-    
+
     #depth::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 5px;
-    height: 25px;
-    background: #00a2ff;
-    position: relative;
-    } 
+        -webkit-appearance: none;
+        width: 5px;
+        height: 25px;
+        background: #00a2ff;
+        position: relative;
+    }
     #depth::-moz-range-thumb {
-    width: 5px;
-    height: 20px;
-    border-radius: 50%;
-    background: #00a2ff;
+        width: 5px;
+        height: 20px;
+        border-radius: 50%;
+        background: #00a2ff;
+    }
+    @media screen and (max-width: 1024px) {
+        .vertical {
+            width: 220px;
+            height: 50px;
+        }
+    }
+
+    /* Pantallas grandes (PCs) */
+    @media screen and (min-width: 1440px) {
+        .vertical {
+            width: 250px;
+            height: 50px;
+        }
+    }
+    /* Pantallas de portátiles (1024px - 1440px) */
+    @media screen and (min-width: 1024px) and (max-width: 1440px) {
+        .vertical {
+            width: 250px; /* Ajuste de tamaño intermedio */
+            height: 50px;
+            padding: 12px; /* Levele reducción de padding */
+        }
     }
 </style>
-<div class="vertical {position}" id="id-instrument1">
-    <svg width="70" height="70" viewBox="0 0 100 100">
-        <polyline id="instrument-1" points={points} stroke="white" stroke-width="3" fill="none"/>
-    </svg>
-    <input type="range" min="0" max="100" disabled bind:value={depth} id="depth" style="width: 160px;">
-    <p class="number">{number}</p>
-</div>    
