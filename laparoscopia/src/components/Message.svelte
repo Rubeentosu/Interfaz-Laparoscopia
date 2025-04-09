@@ -4,6 +4,11 @@
         message = "test2";
     }
 </script>
+
+<div class="messages" on:click={msg}>
+    <p>{message}</p>
+</div>
+
 <style>
     .messages {
         position: absolute;
@@ -20,8 +25,5 @@
         border-bottom-right-radius: 20px;
         border-bottom-left-radius: 20px;
         opacity: 80%;
-        }
+    }
 </style>
-<div class="messages" on:click={msg}>
-    <p>{message}</p>
-</div>
