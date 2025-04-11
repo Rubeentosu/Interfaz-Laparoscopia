@@ -19,7 +19,7 @@
     });
 </script>
 
-<video bind:this={videoElement} autoplay muted class="background-video" />
+<video bind:this={videoElement} autoplay muted class="background-video"></video>
 
 <style>
     /* Estilos para el video de fondo y el contenido */

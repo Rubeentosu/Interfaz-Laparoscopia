@@ -2,23 +2,26 @@
     export let depth = 0;
     export let position;
     export let number;
-    export let points;
+    export let points = "0,0 -20,-30 20,-30";
+    export let ln_left = "rotate(-30)";
+    export let ln_right = "rotate(30)";
+
 </script>
 <div class="vertical {position}">
-    <svg width="200" height="200" viewBox="0 0 200 240" id="prueba">
+    <svg width="200" height="200" viewBox="0 0 200 240" id="angle">
         <g id="pinza" transform="translate(100,100)">
-            <polygon points="0,0 -20,-30 20,-30" fill="red" />
+            <polygon points={points} fill="red" />
       
           <!-- Brazos -->
-          <line id="brazo1" x1="0" y1="0" x2="0" y2="-60" stroke="white" stroke-width="5" transform="rotate(30)" />
-          <line id="brazo2" x1="0" y1="0" x2="0" y2="-60" stroke="white" stroke-width="5" transform="rotate(-30)" />
+          <line id="brazo1" x1="0" y1="0" x2="0" y2="-60" stroke="white" stroke-width="5" transform={ln_right} />
+          <line id="brazo2" x1="0" y1="0" x2="0" y2="-60" stroke="white" stroke-width="5" transform={ln_left} />
         </g>
       </svg>
     <input type="range" min="0" max="100" disabled bind:value={depth} id="depth" style="width: 160px;">
     <p class="number">{number}</p>
 </div>    
 <style>
-    #prueba{
+    #angle{
         transform: rotate(270deg);
     }
     .vertical {
@@ -64,6 +67,7 @@
     }
     #depth {
         -webkit-appearance: none;
+        appearance: none;
         height: 6px;
         background: rgb(255, 255, 255);
         border-radius: 3px;

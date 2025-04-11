@@ -34,6 +34,7 @@
     }
     #camera {
         -webkit-appearance: none;
+        appearance: none;
         height: 6px;
         background: rgb(255, 255, 255);
         border-radius: 3px;
