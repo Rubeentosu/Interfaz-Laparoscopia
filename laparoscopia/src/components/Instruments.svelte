@@ -4,29 +4,21 @@
     export let number;
     export let points;
 </script>
-
-<div class="vertical {position}" id="id-instrument1">
+<div class="vertical {position}">
     <svg width="70" height="70" viewBox="0 0 100 100">
-        <polyline
-            id="instrument-1"
-            {points}
-            stroke="white"
-            stroke-width="3"
-            fill="none"
-        />
+        <defs>
+            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color: black; stop-opacity: 1" />
+                <stop offset="50%" style="stop-color: black; stop-opacity: 1" />
+                <stop offset="50%" style="stop-color: #00a2ff; stop-opacity: 1" />
+                <stop offset="100%" style="stop-color: #00a2ff; stop-opacity: 1" />
+            </linearGradient>
+        </defs>
+        <polyline points={points} stroke="white" stroke-width="3" fill="url(#gradient1)"/>
     </svg>
-    <input
-        type="range"
-        min="0"
-        max="100"
-        disabled
-        bind:value={depth}
-        id="depth"
-        style="width: 160px;"
-    />
+    <input type="range" min="0" max="100" disabled bind:value={depth} id="depth" style="width: 160px;">
     <p class="number">{number}</p>
-</div>
-
+</div>    
 <style>
     .vertical {
         padding: 15px;

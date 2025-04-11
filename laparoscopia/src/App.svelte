@@ -9,10 +9,10 @@
     let depth3 = 0;
     let depth4 = 0;
 
-    let points1 = "10,-40 80,50 10,140";
-    let points2 = "10,-40 80,50 10,140";
-    let points3 = "10,-40 80,50 10,140";
-    let points4 = "10,-40 80,50 10,140";
+    let points1 = "10,-10 80,50 10,110";
+    let points2 = "10,-10 80,50 10,110";
+    let points3 = "10,-10 80,50 10,110";
+    let points4 = "10,-10 80,50 10,110";
 </script>
 
 <CameraControls />
