@@ -5,21 +5,22 @@
     export let points;
 </script>
 <div class="vertical {position}">
-    <svg width="70" height="70" viewBox="0 0 100 100">
-        <defs>
-            <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" style="stop-color: black; stop-opacity: 1" />
-                <stop offset="50%" style="stop-color: black; stop-opacity: 1" />
-                <stop offset="50%" style="stop-color: #00a2ff; stop-opacity: 1" />
-                <stop offset="100%" style="stop-color: #00a2ff; stop-opacity: 1" />
-            </linearGradient>
-        </defs>
-        <polyline points={points} stroke="white" stroke-width="3" fill="url(#gradient1)"/>
-    </svg>
+    <svg width="200" height="200" viewBox="0 0 200 240" id="prueba">
+        <g id="pinza" transform="translate(100,100)">
+            <polygon points="0,0 -20,-30 20,-30" fill="red" />
+      
+          <!-- Brazos -->
+          <line id="brazo1" x1="0" y1="0" x2="0" y2="-60" stroke="white" stroke-width="5" transform="rotate(30)" />
+          <line id="brazo2" x1="0" y1="0" x2="0" y2="-60" stroke="white" stroke-width="5" transform="rotate(-30)" />
+        </g>
+      </svg>
     <input type="range" min="0" max="100" disabled bind:value={depth} id="depth" style="width: 160px;">
     <p class="number">{number}</p>
 </div>    
 <style>
+    #prueba{
+        transform: rotate(270deg);
+    }
     .vertical {
         padding: 15px;
         transform: rotate(-270deg);
@@ -67,6 +68,7 @@
         background: rgb(255, 255, 255);
         border-radius: 3px;
         max-width: 400px;
+        margin-left: -60px;
     }
 
     #depth::-webkit-slider-thumb {
