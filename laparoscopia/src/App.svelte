@@ -1,47 +1,44 @@
 <script>
-    import Camera from "./components/Camera.svelte";
-    import Message from "./components/Message.svelte";
-    import Instruments from "./components/Instruments.svelte";
-    import CameraControls from "./components/CameraControls.svelte";
+	import Camera from "./components/Camera.svelte";
+	import Message from "./components/Message.svelte";
+	import Instruments from "./components/Instruments.svelte";
+	import CameraControls from "./components/CameraControls.svelte";
 
-    let depth1 = 0;
-    let depth2 = 0;
-    let depth3 = 0;
-    let depth4 = 0;
+	let numInstruments = 3;
 
-    let points1 = "10,-10 80,50 10,110";
-    let points2 = "10,-10 80,50 10,110";
-    let points3 = "10,-10 80,50 10,110";
-    let points4 = "10,-10 80,50 10,110";
+	const positions = ["top-right", "top-left", "bottom-left", "bottom-right"];
+
+	let depths = Array(numInstruments).fill(0);
+	let pointsArray = Array(numInstruments).fill("0,0 -20,-30 20,-30");
+	let lnLeftArray = Array(numInstruments).fill("rotate(-30)");
+	let lnRightArray = Array(numInstruments).fill("rotate(30)");
+
+    lnLeftArray[1] = "rotate(-45)";
+    lnRightArray[1] = "rotate(45)";
+    pointsArray[1] = "0,0 -35,-30 35,-30";
+
+    function prueba() {
+        let posicion = parseInt(prompt("Posicion"));
+        return positions[posicion];
+    }
 </script>
-
+<style>
+    :global(body){
+        overflow: hidden;
+    }
+</style>
 <CameraControls />
 <Message />
-<Instruments
-    position="top-right"
-    number="1"
-    bind:depth={depth1}
-    points={points1}
-/>
-<Instruments
-    position="top-left"
-    number="2"
-    bind:depth={depth2}
-    points={points2}
-/>
-<Instruments
-    position="bottom-left"
-    number="3"
-    bind:depth={depth3}
-    points={points3}
-/>
-<Instruments
-    position="bottom-right"
-    number="4"
-    bind:depth={depth4}
-    points={points4}
-/>
-<Camera />
 
-<style>
-</style>
+{#each Array(numInstruments) as _, i}
+	<Instruments
+		position={prueba()}
+		number={i + 1}
+		bind:depth={depths[i]}
+		points={pointsArray[i]}
+		ln_left={lnLeftArray[i]}
+		ln_right={lnRightArray[i]}
+	/>
+{/each}
+
+<Camera />
