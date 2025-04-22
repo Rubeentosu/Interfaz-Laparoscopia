@@ -3,42 +3,62 @@
 	import Message from "./components/Message.svelte";
 	import Instruments from "./components/Instruments.svelte";
 	import CameraControls from "./components/CameraControls.svelte";
-	import InstrumentsPosition from "./components/InstrumentPosition.svelte"
-    import InstrumentPosition from "./components/InstrumentPosition.svelte";
+	import InstrumentPosition from "./components/InstrumentPosition.svelte";
 
-	let numInstruments = 2;
+	let depths = [];
+	let pointsArray = [];
+	let lnLeftArray = [];
+	let lnRightArray = [];
+	let positions = [];
 
-	const positions = ["top-right", "top-left", "bottom-left", "bottom-right"];
+	// 🔹 Datos simulados como si vinieran del servidor
+	const ServerData = [
+		{ depth: 60, points: "0,0 -25,-30 25,-30", ln_left: "rotate(-20)", ln_right: "rotate(20)" },
+		{ depth: 70, points: "0,0 -20,-30 20,-30", ln_left: "rotate(-30)", ln_right: "rotate(30)" },
+		{ depth: 55, points: "0,0 -15,-25 15,-25", ln_left: "rotate(-25)", ln_right: "rotate(25)" },
+		{ depth: 65, points: "0,0 -22,-28 22,-28", ln_left: "rotate(-22)", ln_right: "rotate(22)" }
+	];
 
-	let depths = Array(numInstruments).fill(50);
-	let pointsArray = Array(numInstruments).fill("0,0 -20,-30 20,-30");
-	let lnLeftArray = Array(numInstruments).fill("rotate(-30)");
-	let lnRightArray = Array(numInstruments).fill("rotate(30)");
+	// 🔸 Devuelve los datos inmediatamente, sin retraso
+	function getInstrumentData(index) {
+		return ServerData[index];
+	}
 
-	
-    lnLeftArray[1] = "rotate(-25)";
-    lnRightArray[1] = "rotate(25)";
-    pointsArray[1] = "0,0 -15,-30 15,-30";
+	function handleAddInstrument(event) {
+		const position = event.detail.position;
+		const index = depths.length;
 
-    function test() {
-        let position = parseInt(prompt("Posicion"));
-		if(position < 0 || position > 3 || isNaN(position)){
-			return test();
-		}else{
-			return positions[position];
-		}
-    }
+		if (index >= ServerData.length) return;
+
+		const data = getInstrumentData(index);
+
+		// Usamos push para añadir los datos a los arrays
+		depths.push(data.depth);
+		pointsArray.push(data.points);
+		lnLeftArray.push(data.ln_left);
+		lnRightArray.push(data.ln_right);
+		positions.push(position);
+
+		// Forzamos la reactividad
+		depths = depths;
+		pointsArray = pointsArray;
+		lnLeftArray = lnLeftArray;
+		lnRightArray = lnRightArray;
+		positions = positions;
+	}
 </script>
+
 <style>
-    :global(body){
-        overflow: hidden;
-    }
+	:global(body) {
+		overflow: hidden;
+	}
 </style>
-<InstrumentPosition></InstrumentPosition>
+
+<InstrumentPosition on:addInstrument={handleAddInstrument} maxInstruments={2} />
 <CameraControls />
 <Message />
 
-{#each Array(numInstruments) as _, i}
+{#each depths as depth, i}
 	<Instruments
 		position={positions[i]}
 		number={i + 1}
