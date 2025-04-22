@@ -3,6 +3,8 @@
 	import Message from "./components/Message.svelte";
 	import Instruments from "./components/Instruments.svelte";
 	import CameraControls from "./components/CameraControls.svelte";
+	import InstrumentsPosition from "./components/InstrumentPosition.svelte"
+    import InstrumentPosition from "./components/InstrumentPosition.svelte";
 
 	let numInstruments = 2;
 
@@ -32,6 +34,7 @@
         overflow: hidden;
     }
 </style>
+<InstrumentPosition></InstrumentPosition>
 <CameraControls />
 <Message />
 
