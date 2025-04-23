@@ -13,12 +13,27 @@
 
 	// 🔹 Datos simulados como si vinieran del servidor
 	const ServerData = [
-		{ depth: 60, points: "0,0 -25,-30 25,-30", ln_left: "rotate(-20)", ln_right: "rotate(20)" },
-		{ depth: 70, points: "0,0 -20,-30 20,-30", ln_left: "rotate(-30)", ln_right: "rotate(30)" },
-		{ depth: 55, points: "0,0 -15,-25 15,-25", ln_left: "rotate(-25)", ln_right: "rotate(25)" },
-		{ depth: 65, points: "0,0 -22,-28 22,-28", ln_left: "rotate(-22)", ln_right: "rotate(22)" }
+		{ depth: 11, ln_left: 40, ln_right: 40 },
+		{ depth: 12, ln_left: 20, ln_right: 20 },
+		{ depth: 4, ln_left: 10, ln_right: 10 },
+		{ depth: 14, ln_left: 32, ln_right: 32 }
 	];
 
+	function points(angle) {
+		
+		let fill = 0;
+		let position = "";
+
+		if(angle <= 14){
+			fill = 3;
+			position = String(fill);
+		}else{
+			fill = angle - 10;
+			position = String(fill);
+		}
+		let result = `0,0 -${position},-30 ${position},-30`;
+		return result;
+	}
 	// 🔸 Devuelve los datos inmediatamente, sin retraso
 	function getInstrumentData(index) {
 		return ServerData[index];
@@ -34,9 +49,9 @@
 
 		// Usamos push para añadir los datos a los arrays
 		depths.push(data.depth);
-		pointsArray.push(data.points);
-		lnLeftArray.push(data.ln_left);
-		lnRightArray.push(data.ln_right);
+		pointsArray.push(points(data.ln_right));
+		lnLeftArray.push(`rotate(-${data.ln_left})`);
+		lnRightArray.push(`rotate(${data.ln_right})`);
 		positions.push(position);
 
 		// Forzamos la reactividad
@@ -54,7 +69,7 @@
 	}
 </style>
 
-<InstrumentPosition on:addInstrument={handleAddInstrument} maxInstruments={2} />
+<InstrumentPosition on:addInstrument={handleAddInstrument} maxInstruments={4} />
 <CameraControls />
 <Message />
 

@@ -17,7 +17,7 @@
           <line id="brazo2" x1="0" y1="0" x2="0" y2="-60" stroke="white" stroke-width="5" transform={ln_left} />
         </g>
       </svg>
-    <input type="range" min="0" max="100" disabled bind:value={depth} id="depth" style="width: 160px;">
+    <input type="range" min="0" max="20" disabled bind:value={depth} id="depth" style="width: 160px;">
     <p class="number">{number}</p>
 </div>    
 <style>
