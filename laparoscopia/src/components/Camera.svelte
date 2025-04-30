@@ -1,7 +1,6 @@
 <script>
     let videoElement;
 
-    // Accede a la cámara
     const startCamera = async () => {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({
@@ -9,7 +8,7 @@
             });
             videoElement.srcObject = stream;
         } catch (error) {
-            console.error("Error al acceder a la cámara: ", error);
+            console.error("Error ", error);
         }
     };
 
@@ -22,7 +21,6 @@
 <video bind:this={videoElement} autoplay muted class="background-video"></video>
 
 <style>
-    /* Estilos para el video de fondo y el contenido */
     .background-video {
         position: fixed;
         top: 0;
