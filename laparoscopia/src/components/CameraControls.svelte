@@ -1,20 +1,9 @@
 <script>
-    let zoom = 0;
-    function change() {
-        zoom = 50;
-    }
+    export let zoom;
 </script>
 
-<div class="camera" on:click={change}>
-    <label for="" style="color: white;">&#8722;&nbsp;</label><input
-        type="range"
-        min="0"
-        max="100"
-        bind:value={zoom}
-        id="camera"
-        disabled
-        style="width: 160px;"
-    /><label for="" style="color: white;">&nbsp;&#43;</label>
+<div class="camera">
+    <input type="range" min="0" max="20" bind:value={zoom} id="camera" disabled style="width: 160px;"/> 
 </div>
 
 <style>
@@ -22,15 +11,12 @@
         position: absolute;
         bottom: 0;
         left: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         transform: translateX(-50%);
         background-color: black;
         padding: 8px;
         border-top-right-radius: 20px;
         border-top-left-radius: 20px;
-        opacity: 80%;
+        opacity: 75%;
     }
     #camera {
         -webkit-appearance: none;
