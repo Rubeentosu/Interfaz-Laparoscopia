@@ -1,31 +1,30 @@
 <script>
 	import Camera from "./components/Camera.svelte";
 	import Message from "./components/Message.svelte";
-	import Instruments from "./components/Instruments.svelte";
-	import CameraControls from "./components/CameraControls.svelte";
-	import InstrumentPosition from "./components/InstrumentPosition.svelte";
-	
+	import Tool from "./components/Tool.svelte";
+	import CameraControlsComponent from "./components/CameraControlComponent.svelte";
+	import { CameraControlClass } from "./lib/CameraControlClass.js";
+	import {
+		cameraDepth,
+		message,
+		tools,
+	} from "./lib/serverConection.js";
+
+	let cameraControl = new CameraControlClass($cameraDepth);
+	const positions = ["top-right", "top-left", "bottom-left", "bottom-right"];
 </script>
 
-<style>
-	:global(body) {
-		overflow: hidden;
-	}
-</style>
-
-<InstrumentPosition on:addInstrument={handleAddInstrument} maxInstruments={numInstrument} />
-<CameraControls bind:zoom = {zoom}/>
-<Message message = {msg}></Message>
-
-{#each depths as depth, i}
-	<Instruments
-		position={positions[i]}
-		number={i + 1}
-		bind:depth={depths[i]}
-		points={pointsArray[i]}
-		ln_left={lnLeftArray[i]}
-		ln_right={lnRightArray[i]}
+<CameraControlsComponent bind:cameraDepth={$cameraDepth} control={cameraControl} />
+{#each $tools as tool, i}
+	<Tool
+		toolDepth={tool.toolDepth}
+		toolAngle={tool.points()}
+		toolLineLeft={`rotate(-${tool.toolAngle})`}
+		toolLineRight={`rotate(${tool.toolAngle})`}
+		toolNumber={i + 1}
+		toolPosition={positions[i]}
 	/>
 {/each}
 
-<Camera />
+
+

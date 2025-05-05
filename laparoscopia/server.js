@@ -8,51 +8,62 @@ const io = new Server(server, {
     origin: '*',
   },
 });
-const text = ["Mensaje1", "Mensaje2", "Mensaje3", "Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4Mensaje4"];
-function rngM() {
-  return Math.floor(Math.random() * 4);
+
+const text = ["Mensaje1", "Mensaje2", "Mensaje3"];
+
+function randomMessage() {
+  return Math.floor(Math.random() * 3);
 }
-function rngA() {
-  return Math.floor(Math.random() * 45);
+
+// Variables que almacenan el estado incremental
+let currentDepth = 0;
+let currentAngle = 0;
+
+function nextDepth() {
+  const value = currentDepth;
+  currentDepth = (currentDepth + 0.1) % 15; // reinicia al llegar a 20
+  return value;
 }
-function rngD() {
-  return Math.floor(Math.random() * 20);
+
+function nextAngle() {
+  const value = currentAngle;
+  currentAngle = (currentAngle + 0.5) % 90; // reinicia al llegar a 45
+  return value;
 }
+
 io.on('connection', (socket) => {
   console.log('Cliente conectado');
 
   setInterval(() => {
     const instrument = [
-      { depth: rngD(), ln: rngA() },
-      { depth: rngD(), ln: rngA() },
-      { depth: rngD(), ln: rngA() },
-      { depth: rngD(), ln: rngA() }
+      { depth: nextDepth(), angle: nextAngle() },
+      { depth: nextDepth(), angle: nextAngle() },
+      { depth: nextDepth(), angle: nextAngle() },
+      { depth: nextDepth(), angle: nextAngle() }
     ];
 
     socket.emit('instrument', instrument);
-  }, 200);
+  }, 50);
+
   setInterval(() => {
-    const camera = rngD();
+    const camera = nextDepth(); // También puedes hacer que esto crezca si lo deseas
 
     socket.emit('camera', camera);
   }, 200);
+
   setInterval(() => {
     const numInstrument = 3;
 
     socket.emit('numInstrument', numInstrument);
   }, 200);
+
   setInterval(() => {
-    const msg = text[rngM()];
+    const msg = text[randomMessage()];
 
     socket.emit('msg', msg);
-  }, 2000);
+  }, 200);
 });
-
 
 server.listen(3000, '0.0.0.0', () => {
   console.log('Servidor escuchando en http://0.0.0.0:3000');
 });
-
-
-
-
