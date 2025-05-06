@@ -1,5 +1,5 @@
 <script>
-    import { fade, scale, slide } from 'svelte/transition';
+    import { scale } from 'svelte/transition';
 	export let toolDepth;
 	export let toolPosition;
 	export let toolNumber;
@@ -52,11 +52,14 @@
         <svg width="200" height="200" viewBox="0 0 200 240" id="angle">
 			<g id="forceps" transform="translate(100,100)">
 				<polygon points={toolAngle} fill={angleColor} />
+                <line x1="0" y1="0" x2="0" y2="-60" stroke="black" stroke-linecap="round" stroke-width="10" transform={toolLineRight} />
+				<line x1="0" y1="0" x2="0" y2="-60" stroke="black" stroke-linecap="round" stroke-width="10" transform={toolLineLeft} />
 				<line id="arm1" x1="0" y1="0" x2="0" y2="-60" stroke="#61bbff" stroke-linecap="round" stroke-width="7" transform={toolLineRight} />
 				<line id="arm2" x1="0" y1="0" x2="0" y2="-60" stroke="#61bbff" stroke-linecap="round" stroke-width="7" transform={toolLineLeft} />
+                
 			</g>
 		</svg>
-		<input type="range" min="0" max="15" disabled bind:value={toolDepth} id="depth" style="--slider-color: {sliderColor}; width: 160px;">
+		<input type="range" min="0" max="15" disabled bind:value={toolDepth} id="depth" style="--slider-color: {sliderColor}; width: 100px;">
 		<p class="number">{toolNumber}</p>
 	</div>
 {/if}
@@ -141,28 +144,30 @@
     #depth {
         -webkit-appearance: none;
         appearance: none;
-        height: 5px;
-        width: 5px;
+        height: 6px;
         background: #61bbff;
-        border-radius: 3px;
+        border-radius: 4px;
         max-width: 400px;
         margin-left: -60px;
         position: relative;
         left: 11%;
+        border: 1.5px solid black;
     }
     #depth::-webkit-slider-thumb {
     -webkit-appearance: none;
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
     background: var(--slider-color);
     border-radius: 50%;
+    box-shadow: 0 0 2px 1px var(--slider-color);
     }
 
     #depth::-moz-range-thumb {
-        width: 15px;
-        height: 15px;
+        width: 14px;
+        height: 14px;
         background: var(--slider-color);
         border-radius: 50%;
+        box-shadow: 0 0 2px 1px var(--slider-color);
     }
     .vertical button.hide-button {
 	z-index: 10;
@@ -170,11 +175,28 @@
     }
     @media screen and (max-width: 1024px) {
         .vertical {
-            width: 220px;
+            width: 200px;
             height: 30px;
         }
         .vertical-expand{
-            margin: 0px 45px;
+            margin: 0px 85px;
+        }
+        .top-right {
+            top: 30%;
+            right: -8%;
+        }
+        .top-left {
+            top: 30%;
+            left: -8%;
+        }
+        .bottom-left {
+            top: 70%;
+            left: -8%;
+        }
+        .bottom-right {
+            position: absolute;
+            top: 70%;
+            right: -8%;
         }
     }
 
@@ -194,11 +216,28 @@
             height: 30px;
         }
         .vertical-expand{
-            margin: 0px 60px;        
+            margin: 0px 80px;        
         }
         #depth {
         position: relative;
         left: 12%;
-    }
+        }
+        .top-right {
+            top: 30%;
+            right: -5%;
+        }
+        .top-left {
+            top: 30%;
+            left: -5%;
+        }
+        .bottom-left {
+            top: 70%;
+            left: -5%;
+        }
+        .bottom-right {
+            position: absolute;
+            top: 70%;
+            right: -5%;
+        }
     }
 </style>

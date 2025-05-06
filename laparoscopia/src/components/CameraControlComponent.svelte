@@ -1,6 +1,5 @@
 <script>
 	export let cameraDepth;
-	export let control; 
 
     $: sliderColor = cameraDepth > 10 ? '#FF8864' : cameraDepth > 5 ? '#ffd966' : '#B2FFD6';
 </script>
@@ -25,23 +24,26 @@
         appearance: none;
         height: 5px;
         background: #61bbff;
-        border-radius: 3px;
+        border-radius: 4px;
         max-width: 400px;
         position: relative;
+        border: 1.5px solid black;
     }
 
     #camera::-webkit-slider-thumb {
         -webkit-appearance: none;
-        width: 15px;
-        height: 15px;
+        width: 14px;
+        height: 14px;
         background: var(--slider-color);
         border-radius: 50%;
+        box-shadow: 0 0 2px 1px var(--slider-color);
     }
 
     #camera::-moz-range-thumb {
-        width: 15px;
-        height: 15px;
+        width: 14px;
+        height: 14px;
         background: var(--slider-color);
         border-radius: 50%;
+        box-shadow: 0 0 2px 1px var(--slider-color);
     }
 </style>
