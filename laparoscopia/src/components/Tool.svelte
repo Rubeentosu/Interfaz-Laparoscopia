@@ -12,7 +12,7 @@
 	function hideTool() {
 		hidden = !hidden;
 	}
-    $: sliderColor = toolDepth > 10 ? '#FF8864' : toolDepth > 5 ? '#ffd966' : '#B2FFD6';
+    $: sliderColor = toolDepth > 10 ? '#ff723e' : toolDepth > 5 ? '#ffd966' : '#B2FFD6';
    
 	let angleColor;
 
@@ -30,7 +30,7 @@
 		} else if (angleWidth <= 50) {
 			angleColor = '#ffd966';
 		} else if (angleWidth <= 60) {
-			angleColor = '#FF8864';
+			angleColor = '#ff723e';
 		}
 	}
 
@@ -45,9 +45,9 @@
         </div>
 	</div>
 {:else}
-	<div class="vertical {toolPosition}" transition:scale={{ duration: 500 }}>
+	<div class="vertical {toolPosition}" style="--slider-color: {sliderColor};" transition:scale={{ duration: 500 }}>
         <div class="button-center" style="width: 30px;">
-		    <button type="button" class="hide-button img-button" style="transform: rotate(270deg);" on:click={hideTool}><img src="./src/resources/imgs/collapse.svg" style="width: 16px;" alt="collapse" class="clickable-img"/></button>
+		    <button type="button" class="hide-button img-button" on:click={hideTool}><img src="./src/resources/imgs/collapse.svg" style="width: 16px;" alt="collapse" class="clickable-img"/></button>
 		</div>
         <svg width="200" height="200" viewBox="0 0 200 240" id="angle">
 			<g id="forceps" transform="translate(100,100)">
@@ -64,102 +64,55 @@
 	</div>
 {/if}
 <style>
-    #angle{
-        transform: rotate(270deg);
-    }
-    .vertical-expand{
-        margin: 0 80px;
-        padding: 12px 12px 9px 12px;
+    .vertical-expand {
+        padding: 12px 12px 8px 12px;
         border-radius: 15px;
         background-color: #07030325;
         border: #09060a 2px solid;
         user-select: none;
+        margin-top: 85px;
     }
+
     .vertical {
         padding: 15px;
-        transform: rotate(-270deg);
         border-radius: 15px;
-        border: 2px solid #09060a;
+        border: 2px solid var(--slider-color);
         background-color: #0703033a;
-        width: 270px;
+        height: 200px;
+        width: 30px;
         display: flex;
+        flex-direction: column;
         align-items: center;
+        justify-content: space-evenly;
         user-select: none;
     }
-    .top-right {
-        position: absolute;
-        top: 20%;
-        right: -4%;
-    }
-    .top-left {
-        position: absolute;
-        top: 20%;
-        left: -4%;
-    }
-    .bottom-left {
-        position: absolute;
-        top: 60%;
-        left: -4%;
-    }
-    .bottom-right {
-        position: absolute;
-        top: 60%;
-        right: -4%;
-    }
-    .number {
-        border: 2px solid #09060a;
-        border-radius: 50%;
-        padding: 3px;
-        width: 15%;
-        font-weight: bold;
-        color: rgb(255, 255, 255);
-        background-color: #09060a;
-        transform: rotate(270deg);
-        text-align: center;
-        margin-left: 10px;
-        position: relative;
-        left: 13%;
-        z-index: 10;
-    }
-    .img-button {
-		all: unset; 
-		padding: 0;
-		margin: 0;
-		cursor: pointer;
-	}
-	.clickable-img {
-		width: 30px;
-		cursor: pointer;
-		transition: transform 0.1s ease;
-		background-color: transparent;
-        z-index: 10;
-	}
-	.clickable-img:active {
-		transform: scale(0.9); 
-	}
+
     .button-center {
-	display: flex;
-    background-color: transparent;
-	}
+        display: flex;
+        justify-content: center;
+        background-color: transparent;
+        width: 100%;
+    }
+
     #depth {
         -webkit-appearance: none;
         appearance: none;
         height: 6px;
         background: #61bbff;
         border-radius: 4px;
-        max-width: 400px;
-        margin-left: -60px;
+        width: 80%;
         position: relative;
-        left: 11%;
         border: 1.5px solid black;
+        transform: rotate(-270deg);
     }
+
     #depth::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 14px;
-    height: 14px;
-    background: var(--slider-color);
-    border-radius: 50%;
-    box-shadow: 0 0 2px 1px var(--slider-color);
+        -webkit-appearance: none;
+        width: 14px;
+        height: 14px;
+        background: var(--slider-color);
+        border-radius: 50%;
+        box-shadow: 0 0 2px 1px var(--slider-color);
     }
 
     #depth::-moz-range-thumb {
@@ -169,75 +122,67 @@
         border-radius: 50%;
         box-shadow: 0 0 2px 1px var(--slider-color);
     }
-    .vertical button.hide-button {
-	z-index: 10;
-	position: relative;
-    }
-    @media screen and (max-width: 1024px) {
-        .vertical {
-            width: 200px;
-            height: 30px;
-        }
-        .vertical-expand{
-            margin: 0px 85px;
-        }
-        .top-right {
-            top: 20%;
-            right: -8%;
-        }
-        .top-left {
-            top: 20%;
-            left: -8%;
-        }
-        .bottom-left {
-            top: 60%;
-            left: -8%;
-        }
-        .bottom-right {
-            position: absolute;
-            top: 60%;
-            right: -8%;
-        }
+
+    .number {
+        position: relative;
+        border-radius: 58%;
+        padding: 3px;
+        width: 50%;
+        font-weight: bold;
+        color: rgb(0, 0, 0);
+        background-color: var(--slider-color);
+        text-align: center;
+        z-index: 10;
+        bottom: -43px;
     }
 
-    @media screen and (min-width: 1440px) {
-        .vertical {
-            width: 190px;
-            height: 30px;
-        }
-        .vertical-expand{
-            margin: 0px 80px;
-            padding: 14px 14px 9px 14px;
-        }
+    .img-button {
+        all: unset;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
     }
-    @media screen and (min-width: 1024px) and (max-width: 1440px) {
-        .vertical {
-            width: 190px; 
-            height: 30px;
-        }
-        .vertical-expand{
-            margin: 0px 80px;        
-        }
-        #depth {
+
+    .clickable-img {
+        width: 30px;
+        cursor: pointer;
+        transition: transform 0.1s ease;
+        background-color: transparent;
+        z-index: 10;
+    }
+
+    .clickable-img:active {
+        transform: scale(0.9);
+    }
+
+    .vertical button.hide-button {
+        z-index: 10;
         position: relative;
-        left: 12%;
-        }
-        .top-right {
-            top: 20%;
-            right: -5%;
-        }
-        .top-left {
-            top: 20%;
-            left: -5%;
-        }
-        .bottom-left {
-            top: 60%;
-            left: -5%;
-        }
-        .bottom-right {
-            position: absolute;
-            top: 60%;
-            right: -5%;
-        }
+    }
+
+    .hide-button img {
+        width: 16px;
+        height: auto;
+    }
+
+    .top-right {
+        position: absolute;
+        top: 10%;
+        right: 0.3%;
+    }
+    .top-left {
+        position: absolute;
+        top: 10%;
+        left: 0.3%;
+    }
+    .bottom-left {
+        position: absolute;
+        top: 50%;
+        left: 0.3%;
+    }
+    .bottom-right {
+        position: absolute;
+        top: 50%;
+        right: 0.3%;
     }
 </style>

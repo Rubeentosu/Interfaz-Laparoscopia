@@ -6,7 +6,7 @@
 	function getColor(type) {
 		if (type === "info") return '#B2FFD6';
 		if (type === "warning") return '#ffd966';
-		if (type === "error") return '#FF8864';
+		if (type === "error") return '#ff723e';
 		return 'white';
 	}
 </script>
@@ -22,9 +22,9 @@
 <style>
 	.messages {
 		position: absolute;
-		bottom: -0.7%;
+		bottom: -1%;
 		left: 0.1%;
-		background-color: #0703034f;
+		background-color: #07030342;
 		border: 2px solid #09060a;
 		padding: 10px 14px;
 		border-radius: 20px;

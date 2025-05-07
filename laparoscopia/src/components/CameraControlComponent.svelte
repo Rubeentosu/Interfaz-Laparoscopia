@@ -1,10 +1,10 @@
 <script>
 	export let cameraDepth;
 
-    $: sliderColor = cameraDepth > 10 ? '#FF8864' : cameraDepth > 5 ? '#ffd966' : '#B2FFD6';
+    $: sliderColor = cameraDepth > 10 ? '#ff723e' : cameraDepth > 5 ? '#ffd966' : '#B2FFD6';
 </script>
 
-<div class="camera">
+<div class="camera" style="--slider-color: {sliderColor};">
     <input type="range" min="0" max="15" bind:value={cameraDepth} id="camera" disabled style="--slider-color: {sliderColor}; width: 160px;"/> 
 </div>
 
@@ -15,7 +15,7 @@
         left: 50%;
         transform: translateX(-50%);
         background-color: #07030342;
-        border: 2px solid #09060a;
+        border: 2px solid var(--slider-color);
         padding: 4px 5px 7px 5px;
         border-radius: 20px;
     }
