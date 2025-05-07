@@ -8,7 +8,7 @@ import { CameraControlClass } from "./CameraControlClass.js";
 export const socket = io("http://localhost:3000");
 
 export const cameraControl = writable(new CameraControlClass (0));	
-export const message = writable();
+export const message = writable([]);
 
 export const tools = writable([
 	new ToolClass (0,0),
@@ -64,18 +64,27 @@ socket.on("message", (data) => {
 	}
 
 	const newMessage = new ConsoleMessage(msg, messageTypeInstance);
-	message.set(newMessage);
 
-	// 🕒 Borrar el mensaje a los 5 segundos
+	message.update(currentMessages => {
+		currentMessages.push(newMessage);
+		
+		if (currentMessages.length > 3) {
+			currentMessages.shift();
+		}
+		
+		return currentMessages;
+	});
+
 	setTimeout(() => {
-		message.update(current => {
-			// Solo borrar si no cambió desde que se estableció
-			if (current === newMessage) {
-				return undefined;
+		message.update(currentMessages => {
+			const index = currentMessages.indexOf(newMessage);
+			if (index !== -1) {
+				currentMessages.splice(index, 1);
 			}
-			return current;
+			return currentMessages;
 		});
 	}, 5000);
 });
+
 
 

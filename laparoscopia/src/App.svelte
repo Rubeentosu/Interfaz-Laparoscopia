@@ -11,9 +11,10 @@
 
 	const positions = ["top-right", "top-left", "bottom-left", "bottom-right"];
 </script>
-{#if $message}
-	<Message message={$message} />
+{#if $message.length > 0}
+	<Message messages={$message} />
 {/if}
+
 <Camera></Camera>
 <CameraControlsComponent cameraDepth={$cameraControl.cameraDepth} />
 {#each $tools as tool, i}

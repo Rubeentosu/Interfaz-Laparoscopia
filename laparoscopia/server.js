@@ -95,10 +95,12 @@ io.on('connection', (socket) => {
 
   setInterval(() => {
     let messageGenerator = randomMessage();
-    const message = [ {msg: text[messageGenerator][0],  type: text[messageGenerator][1]}];
+    const message = [ 
+      {msg: text[messageGenerator][0],  type: text[messageGenerator][1]}
+    ];
     
     socket.emit('message', message);
-  }, 10000);
+  }, 3000);
 });
 
 server.listen(3000, '0.0.0.0', () => {
