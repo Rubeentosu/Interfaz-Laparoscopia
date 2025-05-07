@@ -26,6 +26,7 @@
 		max-width: 98%;
 		overflow-wrap: break-word;
 		word-wrap: break-word;
+        user-select: none;
 	}
 	.messages h3 {
 		margin: 0;
