@@ -16,7 +16,7 @@
         transform: translateX(-50%);
         background-color: #07030342;
         border: 2px solid #09060a;
-        padding: 4px 5px 8px 5px;
+        padding: 4px 5px 7px 5px;
         border-radius: 20px;
     }
     #camera {
