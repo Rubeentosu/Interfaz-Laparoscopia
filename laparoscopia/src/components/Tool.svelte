@@ -88,22 +88,22 @@
     }
     .top-right {
         position: absolute;
-        top: 30%;
+        top: 20%;
         right: -4%;
     }
     .top-left {
         position: absolute;
-        top: 30%;
+        top: 20%;
         left: -4%;
     }
     .bottom-left {
         position: absolute;
-        top: 70%;
+        top: 60%;
         left: -4%;
     }
     .bottom-right {
         position: absolute;
-        top: 70%;
+        top: 60%;
         right: -4%;
     }
     .number {
@@ -182,20 +182,20 @@
             margin: 0px 85px;
         }
         .top-right {
-            top: 30%;
+            top: 20%;
             right: -8%;
         }
         .top-left {
-            top: 30%;
+            top: 20%;
             left: -8%;
         }
         .bottom-left {
-            top: 70%;
+            top: 60%;
             left: -8%;
         }
         .bottom-right {
             position: absolute;
-            top: 70%;
+            top: 60%;
             right: -8%;
         }
     }
@@ -223,20 +223,20 @@
         left: 12%;
         }
         .top-right {
-            top: 30%;
+            top: 20%;
             right: -5%;
         }
         .top-left {
-            top: 30%;
+            top: 20%;
             left: -5%;
         }
         .bottom-left {
-            top: 70%;
+            top: 60%;
             left: -5%;
         }
         .bottom-right {
             position: absolute;
-            top: 70%;
+            top: 60%;
             right: -5%;
         }
     }

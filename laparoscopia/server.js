@@ -9,41 +9,41 @@ const io = new Server(server, {
   },
 });
 
-const text = [["This is an example of an error message", "error"], ["This is an example of a warning message", "warning"],["This is an example of an info message", "info"]];
+const text = [["This is example of an error message", "error"], ["This is an example of a warning message", "warning"],["This is an example of an info message", "info"]];
 
-function randomMessage() {
+function randomMessageGeneratorTest() {
   return Math.floor(Math.random() * 3);
 }
 
-let currentDepth = 0;
-let currentDepth2 = 0;
-let currentDepth3 = 0;
-let currentDepth4 = 0;
+let currentDepthTool1 = 0;
+let currentDepthTool2 = 0;
+let currentDepthTool3 = 0;
+let currentDepthTool4 = 0;
 let currentDepthCam = 0;
 
-let currentAngle = 0;
-let currentAngle2 = 0;
-let currentAngle3 = 0;
-let currentAngle4 = 0;
+let currentAngleTool1 = 0;
+let currentAngleTool2 = 0;
+let currentAngleTool3 = 0;
+let currentAngleTool4 = 0;
 
 function nextDepth() {
-  const value = currentDepth;
-  currentDepth = (currentDepth + 0.5) % 15; 
+  const value = currentDepthTool1;
+  currentDepthTool1 = (currentDepthTool1 + 0.5) % 15; 
   return value;
 }
 function nextDepth2() {
-  const value = currentDepth2;
-  currentDepth2 = (currentDepth2 + 0.5) % 15; 
+  const value = currentDepthTool2;
+  currentDepthTool2 = (currentDepthTool2 + 0.5) % 15; 
   return value;
 }
 function nextDepth3() {
-  const value = currentDepth3;
-  currentDepth3 = (currentDepth3 + 0.5) % 15;
+  const value = currentDepthTool3;
+  currentDepthTool3 = (currentDepthTool3 + 0.5) % 15;
   return value;
 }
 function nextDepth4() {
-  const value = currentDepth4;
-  currentDepth4 = (currentDepth4 + 0.5) % 15;
+  const value = currentDepthTool4;
+  currentDepthTool4 = (currentDepthTool4 + 0.5) % 15;
   return value;
 }
 function nextDepthCam() {
@@ -53,23 +53,23 @@ function nextDepthCam() {
 }
 
 function nextAngle() {
-  const value = currentAngle;
-  currentAngle = (currentAngle + 1) % 90; 
+  const value = currentAngleTool1;
+  currentAngleTool1 = (currentAngleTool1 + 1) % 90; 
   return value;
 }
 function nextAngle2() {
-  const value = currentAngle2;
-  currentAngle2 = (currentAngle2 + 1) % 90; 
+  const value = currentAngleTool2;
+  currentAngleTool2 = (currentAngleTool2 + 1) % 90; 
   return value;
 }
 function nextAngle3() {
-  const value = currentAngle3;
-  currentAngle3 = (currentAngle3 + 1) % 90; 
+  const value = currentAngleTool3;
+  currentAngleTool3 = (currentAngleTool3 + 1) % 90; 
   return value;
 }
 function nextAngle4() {
-  const value = currentAngle4;
-  currentAngle4 = (currentAngle4 + 1) % 90; 
+  const value = currentAngleTool4;
+  currentAngleTool4 = (currentAngleTool4 + 1) % 90; 
   return value;
 }
 
@@ -94,13 +94,13 @@ io.on('connection', (socket) => {
   }, 50);
 
   setInterval(() => {
-    let messageGenerator = randomMessage();
+    let messageGenerator = randomMessageGeneratorTest();
     const message = [ 
       {msg: text[messageGenerator][0],  type: text[messageGenerator][1]}
     ];
     
     socket.emit('message', message);
-  }, 3000);
+  }, 1000);
 });
 
 server.listen(3000, '0.0.0.0', () => {
