@@ -9,7 +9,7 @@ const io = new Server(server, {
   },
 });
 
-const text = [["This is an example of an error message", "error"], ["This is an example of an warning message", "warning"],["This is an example of an info message", "info"]];
+const text = [["This is an example of an error message", "error"], ["This is an example of a warning message", "warning"],["This is an example of an info message", "info"]];
 
 function randomMessage() {
   return Math.floor(Math.random() * 3);

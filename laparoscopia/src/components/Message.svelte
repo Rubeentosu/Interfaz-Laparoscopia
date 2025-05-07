@@ -28,6 +28,7 @@
 		margin: 10px 0;
 		overflow-wrap: break-word;
 		word-wrap: break-word;
+        user-select: none;
 	}
 	.messages p {
 		margin: 4px 0;
