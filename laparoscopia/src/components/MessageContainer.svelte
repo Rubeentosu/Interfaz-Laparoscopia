@@ -1,20 +1,14 @@
 <script>
     import { slide } from "svelte/transition";
-
+	import { ConsoleMessageUIController } from "../lib/ConsoleMessageUIController";
 	export let messages;
 
-	function getColor(type) {
-		if (type === "info") return '#B2FFD6';
-		if (type === "warning") return '#ffd966';
-		if (type === "error") return '#ff723e';
-		return 'white';
-	}
 </script>
 
 {#if messages.length > 0}
 	<div class="messages">
 		{#each messages as message}
-			<p style="color: {getColor(message.type._type)}" in:slide = {{duration: 200}} out:slide = {{duration: 200}}>{message.text}</p>
+			<p style="color: {ConsoleMessageUIController.changeColor(message.type._type)}" in:slide = {{duration: 200}} out:slide = {{duration: 200}}>{message.text}</p>
 		{/each}
 	</div>
 {/if}
@@ -22,8 +16,8 @@
 <style>
 	.messages {
 		position: absolute;
-		bottom: -1%;
-		left: 0.1%;
+		bottom: -0.3%;
+		left: 0.3%;
 		background-color: #07030342;
 		border: 2px solid #09060a;
 		padding: 10px 14px;

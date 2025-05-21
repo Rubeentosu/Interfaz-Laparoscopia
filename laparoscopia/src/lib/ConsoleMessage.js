@@ -1,10 +1,11 @@
 export class ConsoleMessage {
-    constructor(text, type) {
+    constructor(text, type, position) {
         this._text = text;
         if(!(type instanceof MessageType)){
         throw new Error("Console message must be created with a MessageType");
         }
         this._type = type;
+        this._position = position;
     }
 
     get text(){
@@ -13,6 +14,9 @@ export class ConsoleMessage {
 
     get type(){
         return this._type;
+    }
+    get position() {
+        return this._position;
     }
 }
 

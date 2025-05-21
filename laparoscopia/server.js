@@ -16,61 +16,79 @@ function randomMessageGeneratorTest() {
 }
 
 let currentDepthTool1 = 0;
-let currentDepthTool2 = 0;
-let currentDepthTool3 = 0;
-let currentDepthTool4 = 0;
+let currentDepthTool2 = 2;
+let currentDepthTool3 = 4;
+let currentDepthTool4 = 8;
 let currentDepthCam = 0;
 
 let currentAngleTool1 = 0;
-let currentAngleTool2 = 0;
-let currentAngleTool3 = 0;
-let currentAngleTool4 = 0;
+let currentAngleTool2 = 30;
+let currentAngleTool3 = 60;
+let currentAngleTool4 = 80;
 
-function nextDepth() {
-  const value = currentDepthTool1;
-  currentDepthTool1 = (currentDepthTool1 + 0.5) % 15; 
-  return value;
+function nextDepthTool1() {
+  currentDepthTool1 += 0.5;
+  if (currentDepthTool1 >= 15) {
+    currentDepthTool1 = 0;
+  }
+  return currentDepthTool1;
 }
-function nextDepth2() {
-  const value = currentDepthTool2;
-  currentDepthTool2 = (currentDepthTool2 + 0.5) % 15; 
-  return value;
+function nextDepthTool2() {
+  currentDepthTool2 += 0.5;
+  if (currentDepthTool2 >= 15) {
+    currentDepthTool2 = 0; 
+  }
+  return currentDepthTool2;
 }
-function nextDepth3() {
-  const value = currentDepthTool3;
-  currentDepthTool3 = (currentDepthTool3 + 0.5) % 15;
-  return value;
+function nextDepthTool3() {
+  currentDepthTool3 += 0.5;
+  if (currentDepthTool3 >= 15) {
+    currentDepthTool3 = 0; 
+  }
+  return currentDepthTool3;
 }
-function nextDepth4() {
-  const value = currentDepthTool4;
-  currentDepthTool4 = (currentDepthTool4 + 0.5) % 15;
-  return value;
+function nextDepthTool4() {
+  currentDepthTool4 += 0.5;
+  if (currentDepthTool4 >= 15) {
+    currentDepthTool4 = 0; 
+  }
+  return currentDepthTool4;
 }
 function nextDepthCam() {
-  const value = currentDepthCam;
-  currentDepthCam = (currentDepthCam + 0.5) % 15;
-  return value;
+  currentDepthCam += 0.5;
+  if (currentDepthCam >= 15) {
+    currentDepthCam = 0; 
+  }
+  return currentDepthCam;
 }
 
-function nextAngle() {
-  const value = currentAngleTool1;
-  currentAngleTool1 = (currentAngleTool1 + 1) % 90; 
-  return value;
+function nextAngleTool1() {
+  currentAngleTool1 += 0.5;
+  if (currentAngleTool1 >= 90) {
+    currentAngleTool1 = 0; 
+  }
+  return currentAngleTool1;
 }
-function nextAngle2() {
-  const value = currentAngleTool2;
-  currentAngleTool2 = (currentAngleTool2 + 1) % 90; 
-  return value;
+function nextAngleTool2() {
+  currentAngleTool2 += 0.5;
+  if (currentAngleTool2 >= 90) {
+    currentAngleTool2 = 0; 
+  }
+  return currentAngleTool2;
 }
-function nextAngle3() {
-  const value = currentAngleTool3;
-  currentAngleTool3 = (currentAngleTool3 + 1) % 90; 
-  return value;
+function nextAngleTool3() {
+  currentAngleTool3 += 0.5;
+  if (currentAngleTool3 >= 90) {
+    currentAngleTool3 = 0; 
+  }
+  return currentAngleTool3;
 }
-function nextAngle4() {
-  const value = currentAngleTool4;
-  currentAngleTool4 = (currentAngleTool4 + 1) % 90; 
-  return value;
+function nextAngleTool4() {
+  currentAngleTool4 += 0.5;
+  if (currentAngleTool4 >= 90) {
+    currentAngleTool4 = 0; 
+  }
+  return currentAngleTool4;
 }
 
 io.on('connection', (socket) => {
@@ -78,27 +96,28 @@ io.on('connection', (socket) => {
 
   setInterval(() => {
     const tool = [
-      { depth: nextDepth(), angle: nextAngle() },
-      { depth: nextDepth2(), angle: nextAngle2() },
-      { depth: nextDepth3(), angle: nextAngle3() },
-      { depth: nextDepth4(), angle: nextAngle4() },
+      { depth: nextDepthTool1(), angle: nextAngleTool1(), position: 1},
+      { depth: nextDepthTool2(), angle: nextAngleTool2(), position: 2},
+      { depth: nextDepthTool3(), angle: nextAngleTool3(), position: 3},
+      { depth: nextDepthTool4(), angle: nextAngleTool4(), position: 4},
     ];
 
     socket.emit('tool', tool);
-  }, 50);
+  }, 200);
 
   setInterval(() => {
     const camera = nextDepthCam(); 
 
     socket.emit('camera', camera);
-  }, 50);
+  }, 200);
 
   setInterval(() => {
-    let messageGenerator = randomMessageGeneratorTest();
-    const message = [ 
-      {msg: text[messageGenerator][0],  type: text[messageGenerator][1]}
-    ];
     
+    const message = [
+      {msg: text[0][0],  type: text[0][1], position: 3},
+      {msg: text[1][0],  type: text[1][1], position: 3},
+      {msg: text[2][0],  type: text[2][1], position: 3},
+    ];
     socket.emit('message', message);
   }, 1000);
 });

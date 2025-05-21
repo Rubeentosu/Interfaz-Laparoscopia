@@ -1,7 +1,8 @@
-export class ToolClass {
-    constructor(toolDepth, toolAngle) {
+export class ToolData {
+    constructor(toolDepth, toolAngle, toolPosition) {
         this._toolDepth = toolDepth;
         this._toolAngle = toolAngle;
+		this._toolPosition = toolPosition;
         this._toolOpening = this.points();
 	}
 	get toolDepth() {
@@ -15,6 +16,12 @@ export class ToolClass {
 	}
 	set toolAngle(value) {
 		this._toolAngle = value;
+    }
+	get toolPosition() {
+		return this._toolPosition;
+	}
+	set toolPosition(value) {
+		this._toolPosition = value;
     }
     points() {
 		let anglePosition = this._toolAngle;
