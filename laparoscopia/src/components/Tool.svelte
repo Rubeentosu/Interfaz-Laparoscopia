@@ -136,12 +136,12 @@
 
     .top-right {
         position: absolute;
-        top: 7%;
+        top: 9%;
         right: 0.3%;
     }
     .top-left {
         position: absolute;
-        top: 7%;
+        top: 9%;
         left: 0.3%;
     }
     .bottom-left {
