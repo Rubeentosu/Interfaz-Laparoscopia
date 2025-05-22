@@ -6,13 +6,9 @@ import { MessageType } from "./ConsoleMessage.js";
 import { CameraControl } from "./CameraControl.js";
 
 export const socket = io("http://localhost:3000");
-
 export const cameraControl = writable(new CameraControl (0));	
 export const message = writable([]);
-
 export const tools = writable([]);
-
-
 
 socket.on("tool", (data) => {
 	if (data.length <= 4) {
@@ -40,8 +36,8 @@ socket.on("camera", (data) => {
 	cameraControl.set(new CameraControl(data));
 });
 
-socket.on("message", (data) => {
-	const parsedMessages = [];
+socket.on("messages", (data) => {
+	const updatedMessages = [];
 
 	for (const item of data) {
 		let messageTypeInstance;
@@ -59,11 +55,11 @@ socket.on("message", (data) => {
 				console.warn("Unknown Message Type:", item.type);
 				messageTypeInstance = MessageType.info;
 		}
-		const newMessage = new ConsoleMessage(item.msg, messageTypeInstance, item.position);
-		parsedMessages.push(newMessage);
+		const newMessage = new ConsoleMessage(item.message, messageTypeInstance, item.toolPosition);
+		updatedMessages.push(newMessage);
 	}
 
-	message.set(parsedMessages); // ← conservar todos los mensajes
+	message.set(updatedMessages.slice(0, 5));
 });
 
 

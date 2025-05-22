@@ -3,7 +3,7 @@ export class ToolData {
         this._toolDepth = toolDepth;
         this._toolAngle = toolAngle;
 		this._toolPosition = toolPosition;
-        this._toolOpening = this.points();
+        this._toolOpening = this.openingAngle();
 	}
 	get toolDepth() {
 		return this._toolDepth;
@@ -23,7 +23,10 @@ export class ToolData {
 	set toolPosition(value) {
 		this._toolPosition = value;
     }
-    points() {
+	get toolOpening() {
+		return this._toolOpening;
+	}
+    openingAngle() {
 		let anglePosition = this._toolAngle;
 		let fill;
 		if (anglePosition <= 14) {

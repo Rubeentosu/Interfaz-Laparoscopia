@@ -16,16 +16,15 @@ export class ConsoleMessageUIController {
         let bestType = null;
         let bestPriority = 0;
 
-        for (const msg of messages) {
-            if (msg.position === position) {
-                const p = priority[msg.type._type];
-                if (p > bestPriority) {
-                    bestPriority = p;
-                    bestType = msg.type;
+        for (const message of messages) {
+            if (message.position === position) {
+                const typePriority = priority[message.type._type];
+                if (typePriority > bestPriority) {
+                    bestPriority = typePriority;
+                    bestType = message.type;
                 }
             }
         }
-
         return bestType;
     }
 }

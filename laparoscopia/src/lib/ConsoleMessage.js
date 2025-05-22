@@ -7,11 +7,9 @@ export class ConsoleMessage {
         this._type = type;
         this._position = position;
     }
-
     get text(){
         return this._text;
     }
-
     get type(){
         return this._type;
     }
@@ -19,7 +17,6 @@ export class ConsoleMessage {
         return this._position;
     }
 }
-
 export class MessageType{
     static info = new MessageType("info");
     static warning = new MessageType("warning");

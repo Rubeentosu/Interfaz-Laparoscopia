@@ -6,7 +6,7 @@
 </script>
 
 {#if messages.length > 0}
-	<div class="messages">
+	<div class="containerMessage">
 		{#each messages as message}
 			<p style="color: {ConsoleMessageUIController.changeColor(message.type._type)}" in:slide = {{duration: 200}} out:slide = {{duration: 200}}>{message.text}</p>
 		{/each}
@@ -14,7 +14,7 @@
 {/if}
 
 <style>
-	.messages {
+	.containerMessage {
 		position: absolute;
 		bottom: -0.3%;
 		left: 0.3%;
@@ -30,7 +30,7 @@
         user-select: none;
 		overflow: hidden;
 	}
-	.messages p {
+	.containerMessage p {
 		margin: 4px 0;
 	}
 </style>

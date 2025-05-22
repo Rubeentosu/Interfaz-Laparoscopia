@@ -5,7 +5,7 @@ export let cameraHidden = writable(false);
 export class CameraControl {
 	constructor(cameraDepth) {
 		this._cameraDepth = cameraDepth;
-		this._position = 0;
+		this._cameraPosition = 0;
 	}
 	get cameraDepth() {
 		return this._cameraDepth;
@@ -14,7 +14,7 @@ export class CameraControl {
 		this._cameraDepth = value;
 	}
 	get position(){
-		return this._position;
+		return this._cameraPosition;
 	}
 	static hide() {
 		cameraHidden.set(true);

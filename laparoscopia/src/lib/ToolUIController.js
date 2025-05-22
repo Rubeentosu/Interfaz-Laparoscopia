@@ -1,5 +1,4 @@
 import { writable } from 'svelte/store';
-import { ToolData } from './ToolData.js';
 
 export const toolHide = [
 	writable(false),

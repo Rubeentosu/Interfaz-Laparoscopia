@@ -11,8 +11,8 @@ const io = new Server(server, {
 
 const text = [["This is example of an error message", "error"], ["This is an example of a warning message", "warning"],["This is an example of an info message", "info"]];
 
-function randomMessageGeneratorTest() {
-  return Math.floor(Math.random() * 3);
+function randomtoolPositionGeneratorTest() {
+  return Math.floor(Math.random() * 5);
 }
 
 let currentDepthTool1 = 0;
@@ -113,12 +113,14 @@ io.on('connection', (socket) => {
 
   setInterval(() => {
     
-    const message = [
-      {msg: text[0][0],  type: text[0][1], position: 3},
-      {msg: text[1][0],  type: text[1][1], position: 3},
-      {msg: text[2][0],  type: text[2][1], position: 3},
+    const messages = [
+      {message: text[0][0],  type: text[0][1], toolPosition: randomtoolPositionGeneratorTest()},
+      {message: text[1][0],  type: text[1][1], toolPosition: randomtoolPositionGeneratorTest()},
+      {message: text[2][0],  type: text[2][1], toolPosition: randomtoolPositionGeneratorTest()},
+      {message: text[2][0],  type: text[2][1], toolPosition: randomtoolPositionGeneratorTest()},
+      {message: text[2][0],  type: text[2][1], toolPosition: randomtoolPositionGeneratorTest()},
     ];
-    socket.emit('message', message);
+    socket.emit('messages', messages);
   }, 1000);
 });
 
