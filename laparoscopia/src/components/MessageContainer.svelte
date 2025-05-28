@@ -71,4 +71,14 @@
 	.tooltip-linea {
 	position: relative;
 	}
+	@media (max-height: 900px) {
+		.containerMessage {
+			height: 13%;
+		}
+	
+	.containerMessage p {
+		margin: 1px 0;
+	}
+	}
+	
 </style>
