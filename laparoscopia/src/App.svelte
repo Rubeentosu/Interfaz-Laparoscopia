@@ -2,20 +2,20 @@
 	import Camera from "./components/Camera.svelte";
 	import MessageContainer from "./components/MessageContainer.svelte";
 	import Tool from "./components/Tool.svelte";
-	import CameraControlsComponent from "./components/CameraControl.svelte";
+	import CameraControl  from "./components/CameraControl.svelte";
 	import { ConsoleMessageUIController } from "./lib/ConsoleMessageUIController";
 	import {
     	cameraControl,
 		message,
 		tools,
-	} from "./lib/ServerConection.js";
+	} from "./lib/MainComposer.js";
 	import { toolHide, positions } from "./lib/ToolUIController";
 
 </script>
 
 <MessageContainer messages={$message} />
 <Camera></Camera>
-<CameraControlsComponent
+<CameraControl
 	cameraDepth={$cameraControl.cameraDepth}
 	cameraMessageColor={ConsoleMessageUIController.changeColor(ConsoleMessageUIController.getHighestPriorityMessageType($message, $cameraControl._cameraPosition)?._type || "")} />
 
