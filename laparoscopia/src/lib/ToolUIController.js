@@ -15,4 +15,3 @@ export class ToolUIController{
 	}
 }
 
-export const positions = ["top-right", "top-left", "bottom-left", "bottom-right"];

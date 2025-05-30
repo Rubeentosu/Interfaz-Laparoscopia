@@ -64,8 +64,9 @@ socketManager.onMessages((data) => {
 		}
 
 		const newMessage = new ConsoleMessage(item.message, messageTypeInstance, item.toolPosition);
-		updatedMessages.push(newMessage);
+		newMessage.addMessage(updatedMessages);
 	}
 
 	message.set(updatedMessages.slice(0, 5)); 
+	
 });

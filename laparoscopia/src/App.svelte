@@ -9,7 +9,7 @@
 		message,
 		tools,
 	} from "./lib/MainComposer.js";
-	import { toolHide, positions } from "./lib/ToolUIController";
+	import { toolHide, ToolUIController } from "./lib/ToolUIController";
 
 </script>
 
@@ -27,6 +27,6 @@
 		toolLineLeft={`rotate(-${tool.toolAngle})`}
 		toolLineRight={`rotate(${tool.toolAngle})`}
 		toolNumber={tool.toolPosition}
-		toolPosition={positions[tool.toolPosition - 1]}
+		toolPosition={tool.assignToolPosition(tool.toolPosition)}
 		toolMessageColor={ConsoleMessageUIController.changeColor(ConsoleMessageUIController.getHighestPriorityMessageType($message, tool.toolPosition)?._type || "")} />
 {/each}

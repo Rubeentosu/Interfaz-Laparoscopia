@@ -16,6 +16,18 @@ export class ConsoleMessage {
     get position() {
         return this._position;
     }
+    deleteMessage(array){
+        array.shift();
+        return array;
+    }
+    addMessage(array){
+        array.push(this);
+        return array;
+    }
+    static deleteAllMessage(array){
+        array.length = 0;
+        return array;
+    }
 }
 export class MessageType{
     static info = new MessageType("info");

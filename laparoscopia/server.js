@@ -114,11 +114,11 @@ io.on('connection', (socket) => {
   setInterval(() => {
     
     const messages = [
-      {message: text[0][0],  type: text[0][1], toolPosition: 1},
       {message: text[1][0],  type: text[1][1], toolPosition: 2},
       {message: text[2][0],  type: text[2][1], toolPosition: 3},
       {message: text[2][0],  type: text[2][1], toolPosition: 4},
       {message: text[2][0],  type: text[2][1], toolPosition: 0},  
+      {message: text[0][0],  type: text[0][1], toolPosition: 1},
       ];
     socket.emit('messages', messages);
   }, 1000);
