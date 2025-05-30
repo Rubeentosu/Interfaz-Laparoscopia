@@ -21,8 +21,8 @@
 <style>
 	.containerMessage {
 		position: absolute;
-		bottom: -0.3%;
-		left: 0.3%;
+		bottom: -0.2%;
+		left: 0.4%;
 		background-color: #07030342;
 		border: 2px solid #09060a;
 		padding: 10px 14px;
@@ -67,9 +67,6 @@
 	.tooltip-parrafo:hover + .tooltip-caja,
 	.tooltip-caja:hover {
 		display: block;
-	}
-	.tooltip-linea {
-	position: relative;
 	}
 	@media (max-height: 900px) {
 		.containerMessage {

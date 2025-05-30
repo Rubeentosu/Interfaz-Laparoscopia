@@ -12,7 +12,7 @@
 </script>
 
 {#if $toolHidden}
-	<div class="vertical-expand {toolPosition}" style="border: {toolMessageColor} 2px solid;" transition:scale={{ duration: 500 }}>
+	<div class="vertical-expand {toolPosition}" style="border: {toolMessageColor} 3px solid;" transition:scale={{ duration: 500 }}>
         <div class="button-center">
             <button on:click={() => ToolUIController.show(toolHidden)} class="img-button">
                 <img src="./src/resources/imgs/expand.svg" alt="expand" class="clickable-img" />
@@ -20,7 +20,7 @@
         </div>
 	</div>
 {:else}
-    <div class="vertical {toolPosition}" style="border: {toolMessageColor} 2px solid;" transition:scale={{ duration: 500 }}>
+    <div class="vertical {toolPosition}" style="border: {toolMessageColor} 3px solid;" transition:scale={{ duration: 500 }}>
         <div class="button-center" style="width: 30px;">
 		    <button type="button" class="hide-button img-button" on:click={() => ToolUIController.hide(toolHidden)}><img src="./src/resources/imgs/collapse.svg" style="width: 16px;" alt="collapse" class="clickable-img"/></button>
 		</div>
@@ -33,11 +33,38 @@
 				<line id="arm2" x1="0" y1="0" x2="0" y2="-60" stroke="#61bbff" stroke-linecap="round" stroke-width="7" transform={toolLineLeft} />             
 			</g>
 		</svg>
-		<input type="range" min="0" max="15" disabled bind:value={toolDepth} id="depth" style="width: 100px;">
-		<p class="number" style="background-color: {toolMessageColor};">{toolNumber}</p>
+        
+        		                <img src="./src/resources/imgs/minun.png" alt="expand" class="menos" />
+
+        <input type="range" min="0" max="15" disabled bind:value={toolDepth} id="depth" style="width: 100px;">
+		                <img src="./src/resources/imgs/plus.svg" alt="expand" class="mas" />
+        <p class="number" style="background-color: {toolMessageColor};">{toolNumber}</p>
 	</div> 
 {/if}
 <style>
+    .menos{
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 35%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #000000;
+    }
+    .mas{
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        bottom: 7%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #000000;
+    }
+    #angle{
+        position: relative;
+        bottom: 10px;
+        left: 0px;
+    }
     .vertical-expand {
         padding: 12px 12px 8px 12px;
         border-radius: 15px;
@@ -51,7 +78,7 @@
         padding: 15px;
         border-radius: 15px;
         background-color: #0703033a;
-        height: 200px;
+        height: 218px;
         width: 30px;
         display: flex;
         flex-direction: column;
@@ -74,6 +101,7 @@
         border-radius: 4px;
         width: 80%;
         position: relative;
+        bottom: 6%;
         border: 1.5px solid black;
         transform: rotate(-270deg);
     }
@@ -137,21 +165,21 @@
     .top-right {
         position: absolute;
         top: 9%;
-        right: 0.3%;
+        right: 0.4%;
     }
     .top-left {
         position: absolute;
         top: 9%;
-        left: 0.3%;
+        left: 0.4%;
     }
     .bottom-left {
         position: absolute;
         top: 45%;
-        left: 0.3%;
+        left: 0.4%;
     }
     .bottom-right {
         position: absolute;
         top: 45%;
-        right: 0.3%;
+        right: 0.4%;
     }
 </style>

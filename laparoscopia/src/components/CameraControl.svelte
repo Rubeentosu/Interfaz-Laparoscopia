@@ -7,7 +7,7 @@
 
 </script>
 {#if $cameraHidden}
-	<div class="camera-expand" style="border: 2px solid {cameraMessageColor};" transition:scale={{ duration: 500 }}>
+	<div class="camera-expand" style="border: 3px solid {cameraMessageColor};" transition:scale={{ duration: 500 }}>
         <div class="button-center">
             <button on:click={CameraControl.show} class="img-button">
                 <img src="./src/resources/imgs/expand.svg" alt="expand" class="clickable-img" />
@@ -15,7 +15,7 @@
         </div>
 	</div>
 {:else}
-<div class="camera" style="border: 2px solid {cameraMessageColor};">
+<div class="camera" style="border: 3px solid {cameraMessageColor};">
     <div class="button-center" style="width: 30px;" transition:scale={{ duration: 100 }}>
         <button type="button" on:click={CameraControl.hide} class="hide-button img-button"><img src="./src/resources/imgs/collapse.svg" style="width: 16px;" alt="collapse" class="clickable-img"/></button>
     </div>
