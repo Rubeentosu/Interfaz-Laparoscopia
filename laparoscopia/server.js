@@ -12,7 +12,7 @@ const io = new Server(server, {
 const text = [["This is an example of an error messagemmmmmmmmmccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "error"], ["This is an example of a warning message", "warning"],["This is an example of an info message", "info"]];
 
 function randomtoolPositionGeneratorTest() {
-  return Math.floor(Math.random() * 5);
+  return Math.floor(Math.random() * 2);
 }
 
 let currentDepthTool1 = 0;
