@@ -74,7 +74,7 @@
 		}
 	
 	.containerMessage p {
-		margin: 1px 0;
+		margin: -2px 0;
 	}
 	}
 	
