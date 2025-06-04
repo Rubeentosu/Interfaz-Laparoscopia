@@ -33,7 +33,7 @@
         user-select: none;
 	}
 	.containerMessage p {
-		margin: 4px 0;
+		margin: 2px 0;
 		white-space: nowrap;        
 		overflow: hidden;            
 		text-overflow: ellipsis; 

@@ -49,4 +49,12 @@ export class ToolData {
 				return "bottom-right";	
 		}
 	}
+	deleteTool(array){
+        array.shift();
+        return array;
+    }
+    addTool(array){
+        array.push(this);
+        return array;
+    }
 }

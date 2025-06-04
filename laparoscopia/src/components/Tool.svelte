@@ -33,32 +33,28 @@
 				<line id="arm2" x1="0" y1="0" x2="0" y2="-60" stroke="#61bbff" stroke-linecap="round" stroke-width="7" transform={toolLineLeft} />             
 			</g>
 		</svg>
-        
-        		                <img src="./src/resources/imgs/minun.png" alt="expand" class="menos" />
-
+        <img src="./src/resources/imgs/minun.png" alt="expand" class="minus" />
         <input type="range" min="0" max="15" disabled bind:value={toolDepth} id="depth" style="width: 100px;">
-		                <img src="./src/resources/imgs/plus.svg" alt="expand" class="mas" />
+        <img src="./src/resources/imgs/plus.svg" alt="expand" class="plus" />
         <p class="number" style="background-color: {toolMessageColor};">{toolNumber}</p>
 	</div> 
 {/if}
 <style>
-    .menos{
+    .minus{
         width: 18px;
         height: 18px;
         position: absolute;
         top: 35%;
         left: 50%;
         transform: translateX(-50%);
-        color: #000000;
     }
-    .mas{
+    .plus{
         width: 18px;
         height: 18px;
         position: absolute;
         bottom: 7%;
         left: 50%;
         transform: translateX(-50%);
-        color: #000000;
     }
     #angle{
         position: relative;

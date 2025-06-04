@@ -22,7 +22,7 @@ socketManager.onTool((data) => {
         for (let i = 0; i < data.length; i++) {
             const { depth, angle, position } = data[i];
             const tool = new ToolData(depth, angle/2, position);
-            updatedTools.push(tool);
+            tool.addTool(updatedTools);
         }
         
         tools.set(updatedTools);
@@ -31,7 +31,7 @@ socketManager.onTool((data) => {
         for (let i = 0; i < 4; i++) {
             const { depth, angle, position } = data[i];
             const tool = new ToolData(depth, angle/2, position);
-            updatedTools.push(tool);
+            tool.addTool(updatedTools);
         }
         tools.set(updatedTools);
     }
@@ -62,7 +62,13 @@ socketManager.onMessages((data) => {
 				console.warn("Unknown message type:", item.type);
 				messageTypeInstance = MessageType.info;
 		}
-
+		if(messageTypeInstance === MessageType.error){
+			item.message = "❌ " + item.message;
+		}else if (messageTypeInstance === MessageType.warning) {
+			item.message = "⚠️ " + item.message;
+		} else {
+			item.message = "ℹ️ " + item.message;
+		}
 		const newMessage = new ConsoleMessage(item.message, messageTypeInstance, item.toolPosition);
 		newMessage.addMessage(updatedMessages);
 	}

@@ -7,11 +7,11 @@ export const toolHide = [
 	writable(false)
 ];
 export class ToolUIController{
-	static hide(store) {
-		store.set(true);
+	static hide(toolVisibility) {
+		toolVisibility.set(true);
 	}
-	static show(store) {
-		store.set(false);
+	static show(toolVisibility) {
+		toolVisibility.set(false);
 	}
 }
 

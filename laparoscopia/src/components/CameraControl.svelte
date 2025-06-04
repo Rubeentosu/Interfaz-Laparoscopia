@@ -19,11 +19,28 @@
     <div class="button-center" style="width: 30px;" transition:scale={{ duration: 100 }}>
         <button type="button" on:click={CameraControl.hide} class="hide-button img-button"><img src="./src/resources/imgs/collapse.svg" style="width: 16px;" alt="collapse" class="clickable-img"/></button>
     </div>
+    <img src="./src/resources/imgs/minun.png" alt="expand" class="minus" />
     <input type="range" min="0" max="15" bind:value={cameraDepth} id="camera" disabled style="width: 160px;"/> 
-    <div class="camera-icon" style="background-color: {cameraMessageColor};"><img src="./src/resources/imgs/camera-svgrepo-com.svg" alt="" style="width: 16px;"></div>
+    <img src="./src/resources/imgs/plus.svg" alt="expand" class="plus" />
+    <div class="camera-icon" style="background-color: {cameraMessageColor};">
+        {#if cameraMessageColor === "#ff723e"}
+            ! 
+        {:else}
+            <i class="fa-solid fa-camera"></i> 
+        {/if}
+    </div>
+    
 </div>
 {/if}
 <style>
+    .minus{
+        width: 18px;
+        height: 18px;
+    }
+    .plus{
+        width: 18px;
+        height: 18px;        
+    }
     .camera {
         position: absolute;
         bottom: 0.3%;
