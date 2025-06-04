@@ -44,7 +44,7 @@
         width: 18px;
         height: 18px;
         position: absolute;
-        top: 35%;
+        top: 37%;
         left: 50%;
         transform: translateX(-50%);
     }
@@ -52,7 +52,7 @@
         width: 18px;
         height: 18px;
         position: absolute;
-        bottom: 7%;
+        bottom: 5%;
         left: 50%;
         transform: translateX(-50%);
     }
@@ -126,9 +126,10 @@
         width: 50%;
         font-weight: bold;
         color: black;
+        font-size: 14px;
         text-align: center;
         z-index: 10;
-        bottom: -43px;
+        bottom: -41px;
     }
 
     .img-button {

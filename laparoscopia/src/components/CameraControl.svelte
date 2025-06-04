@@ -24,7 +24,7 @@
     <img src="./src/resources/imgs/plus.svg" alt="expand" class="plus" />
     <div class="camera-icon" style="background-color: {cameraMessageColor};">
         {#if cameraMessageColor === "#ff723e"}
-            ! 
+        ⨉
         {:else}
             <i class="fa-solid fa-camera"></i> 
         {/if}
@@ -63,11 +63,12 @@
         font-weight: bold;
         color: black;
         background-color: #B2FFD6;
+        font-size: 14px;
         display: flex;
         align-items: center;
         justify-content: center;   
         z-index: 10;
-        left: 15px;
+        left: 16px;
     }
     .camera-expand {
         padding: 7px 9px 5px 9px;
