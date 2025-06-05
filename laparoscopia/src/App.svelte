@@ -2,20 +2,19 @@
 	import Camera from "./components/CameraVisualInterface.svelte";
 	import MessageContainer from "./components/MessagesContainerControl/MessageContainer.svelte";
 	import Tool from "./components/ToolControl/ToolDisplay.svelte";
-	import { CameraUIController } from "./components/CameraControl/CameraUIController";
+	import { CameraControllerData } from "./components/CameraControl/CameraControllerData";
 	import { ConsoleMessageUIController } from "./components/MessagesContainerControl/ConsoleMessageUIController";
-	import { ToolUIController } from "./components/ToolControl/ToolUIController";
-    import PrimaryButton from "./components/PrimaryButton/PrimaryButton.svelte";
-    import { PrimaryButtonController } from "./components/PrimaryButton/PrimaryButtonController";
+	import { ToolUIController } from "./components/ToolControl/ToolUIController"; 
     import { writable } from "svelte/store";
     import { ToolData } from "./components/ToolControl/ToolData";
     import { SocketManager } from "./lib/SocketManager";
-    import { ConsoleMessage, MessageType } from "./components/MessagesContainerControl/ConsoleMessage";
-    import CameraControlInterface from "./components/CameraControl/CameraControlInterface.svelte";
+    import { ConsoleMessageData, MessageType } from "./components/MessagesContainerControl/ConsoleMessageData";
+    import CameraControlDisplay from "./components/CameraControl/CameraControlDisplay.svelte";
+    import { CameraUIController } from "./components/CameraControl/CameraUIController";
 
 	// AQUI
 
-	const cameraControl = writable(new CameraUIController(10));
+	const cameraControl = writable(new CameraControllerData(10));
     const tools = writable([
 	    new ToolData(0, 0, 1),    
 	    new ToolData(0, 0, 2),
@@ -44,7 +43,7 @@
 	});
 
 	socketManager.onCamera((data) => {
-		cameraControl.set(new CameraUIController(data));
+		cameraControl.set(new CameraControllerData(data));
 	});
 
 	socketManager.onMessages((data) => {
@@ -74,29 +73,21 @@
 			} else {
 				item.message = "ℹ️ " + item.message;
 			}
-			const newMessage = new ConsoleMessage(item.message, messageTypeInstance, item.toolPosition);
+			const newMessage = new ConsoleMessageData(item.message, messageTypeInstance, item.toolPosition);
 			newMessage.addMessage(updatedMessages);
 		}
 
 		message.set(updatedMessages.slice(0, 5)); 
 		
 	});
-	let startButtonController = new PrimaryButtonController("Start",5);
-	startButtonController.onClick = ()=>{console.log("Start")}
-	let stopButtonController = new PrimaryButtonController("Stop", 50);
-	stopButtonController.onClick = ()=>{console.log("Stop")}
 </script>
-
-<PrimaryButton controller = {startButtonController}/>
-<PrimaryButton controller = {stopButtonController}/>
-
-<MessageContainer messages={$message} />
+<MessageContainer messages = {$message} />
 <Camera></Camera>
-<CameraControlInterface
-	cameraDepth={$cameraControl.cameraDepth}
+<CameraControlDisplay
+	cameraController = {new CameraUIController($cameraControl)}
 	cameraMessageColor={ConsoleMessageUIController.changeColor(ConsoleMessageUIController.getHighestPriorityMessageType($message, $cameraControl.position)?.type || "")} />
 
-{#each $tools as tool, i}
+{#each $tools as tool}
 	<Tool
 		toolController = {new ToolUIController(tool)}
 		toolNumber={(ConsoleMessageUIController.getHighestPriorityMessageType($message, tool.toolPosition)?._type || "") === "error" ? '⨉' : tool.toolPosition}

@@ -37,18 +37,6 @@ export class ToolData {
 		let position = String(fill);
 		return `0,0 -${position},-30 ${position},-30`;
 	}
-	assignToolPosition(position){
-		switch(position){
-			case 1:
-				return "top-right";
-			case 2:
-				return "top-left";
-			case 3:
-				return "bottom-left";
-			case 4:
-				return "bottom-right";	
-		}
-	}
 	deleteTool(array){
         array.shift();
         return array;

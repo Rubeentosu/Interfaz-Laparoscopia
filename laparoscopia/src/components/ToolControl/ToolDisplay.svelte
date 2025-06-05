@@ -11,17 +11,17 @@
 </script>
 
 {#if !isVisible}
-	<div class="vertical-expand {toolController.tool.assignToolPosition(toolController.tool._toolPosition)}" style="border: {toolMessageColor} 3px solid;" transition:scale={{ duration: 500 }}>
+	<div class="vertical-expand {toolController.assignToolPosition(toolController.tool._toolPosition)}" style="border: {toolMessageColor} 3px solid;" transition:scale={{ duration: 500 }}>
         <div class="button-center">
-            <button on:click={() => {toolController.show(); isVisible = toolController.visible; }} class="img-button">
+            <button on:click={() => {toolController.showTool(); isVisible = toolController.visible; }} class="img-button">
                 <img src="./src/resources/imgs/expand.svg" alt="expand" class="clickable-img" />
             </button>
         </div>
 	</div>
 {:else}
-    <div class="vertical {toolController.tool.assignToolPosition(toolController.tool._toolPosition)}" style="border: {toolMessageColor} 3px solid;" transition:scale={{ duration: 500 }}>
+    <div class="vertical {toolController.assignToolPosition(toolController.tool._toolPosition)}" style="border: {toolMessageColor} 3px solid;" transition:scale={{ duration: 500 }}>
         <div class="button-center" style="width: 30px;">
-		    <button type="button" class="hide-button img-button" on:click={() => {toolController.hide(); isVisible = toolController.visible; }}><img src="./src/resources/imgs/collapse.svg" style="width: 16px;" alt="collapse" class="clickable-img"/></button>
+		    <button type="button" class="hide-button img-button" on:click={() => {toolController.hideTool(); isVisible = toolController.visible; }}><img src="./src/resources/imgs/collapse.svg" style="width: 16px;" alt="collapse" class="clickable-img"/></button>
 		</div>
         <svg width="200" height="200" viewBox="0 0 200 240" id="angle">
 			<g id="forceps" transform="translate(100,100)">

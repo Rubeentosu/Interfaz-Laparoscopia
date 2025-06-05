@@ -10,14 +10,27 @@ export class ToolUIController {
 		this.visible = true;
 	}
 
-	hide(){
+	hideTool(){
 		this.visible = false;
 	}
 
-	show(){
+	showTool(){
 		this.visible = true;
 	}
 	getTool() {
 		return this.tool;
 	}
+	assignToolPosition(position){
+		switch(position){
+			case 1:
+				return "top-right";
+			case 2:
+				return "top-left";
+			case 3:
+				return "bottom-left";
+			case 4:
+				return "bottom-right";	
+		}
+	}
+	
 }

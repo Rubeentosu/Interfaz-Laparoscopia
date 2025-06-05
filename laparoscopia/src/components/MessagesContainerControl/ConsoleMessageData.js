@@ -1,4 +1,6 @@
-export class ConsoleMessage {
+let messageIdCounter = 0;
+
+export class ConsoleMessageData {
     constructor(text, type, position) {
         this._text = text;
         if(!(type instanceof MessageType)){
@@ -6,7 +8,8 @@ export class ConsoleMessage {
         }
         this._type = type;
         this._position = position;
-    }
+        
+	}
     get text(){
         return this._text;
     }

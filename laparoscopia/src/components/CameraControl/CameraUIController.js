@@ -1,26 +1,22 @@
-import { writable } from "svelte/store";
-
-export let cameraHidden = writable(false);
-
+import { CameraControllerData } from "./CameraControllerData";
 export class CameraUIController {
-	constructor(cameraDepth) {
-		this._cameraDepth = cameraDepth;
-		this._cameraPosition = 0;
-	}
-	get cameraDepth() {
-		return this._cameraDepth;
-	}
-	set cameraDepth(value) {
-		this._cameraDepth = value;
-	}
-	get position(){
-		return this._cameraPosition;
-	}
-	static hide() {
-		cameraHidden.set(true);
-	}
-	static show() {
-		cameraHidden.set(false);
-	}
-}
+    constructor(cameraDataInstance) {
+        if (!(cameraDataInstance instanceof CameraControllerData)) {
+            throw new Error('Se requiere una instancia de ToolData');
+        }
 
+        this.camera = cameraDataInstance;
+        this.visible = true;
+    }
+
+    hideCamera(){
+        this.visible = false;
+    }
+
+    showCamera(){
+        this.visible = true;
+    }
+    getCamera() {
+        return this.camera;
+    }
+}
