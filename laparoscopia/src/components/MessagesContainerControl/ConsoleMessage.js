@@ -40,4 +40,7 @@ export class MessageType{
         throw new Error("Cant create Console Message with that type");
         }
     }
+    get type(){
+        return this._type;
+    }
 }

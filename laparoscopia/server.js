@@ -97,9 +97,9 @@ io.on('connection', (socket) => {
   setInterval(() => {
     const tool = [
       { depth: nextDepthTool1(), angle: nextAngleTool1(), position: 1},
-      { depth: nextDepthTool2(), angle: nextAngleTool2(), position: 2},
       { depth: nextDepthTool3(), angle: nextAngleTool3(), position: 3},
       { depth: nextDepthTool4(), angle: nextAngleTool4(), position: 4},
+      { depth: nextDepthTool4(), angle: nextAngleTool4(), position: 2},
     ];
 
     socket.emit('tool', tool);

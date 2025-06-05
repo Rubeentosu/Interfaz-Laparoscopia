@@ -1,40 +1,39 @@
 <script>
-    import { ToolUIController } from '../lib/ToolUIController';
+    import { ToolUIController } from './ToolUIController';
     import { scale } from 'svelte/transition';
-    export let toolHidden;
-	export let toolDepth;
-	export let toolPosition;
-	export let toolNumber;
-	export let toolAngle;
-	export let toolLineLeft;
-	export let toolLineRight;
     export let toolMessageColor;
+    export let toolNumber;
+    export let toolController;
+    if(!(toolController instanceof ToolUIController)){
+        throw new Error("Controller of ToolDisplay must be a ToolUIController");
+    }
+    let isVisible = toolController.visible;
 </script>
 
-{#if $toolHidden}
-	<div class="vertical-expand {toolPosition}" style="border: {toolMessageColor} 3px solid;" transition:scale={{ duration: 500 }}>
+{#if !isVisible}
+	<div class="vertical-expand {toolController.tool.assignToolPosition(toolController.tool._toolPosition)}" style="border: {toolMessageColor} 3px solid;" transition:scale={{ duration: 500 }}>
         <div class="button-center">
-            <button on:click={() => ToolUIController.show(toolHidden)} class="img-button">
+            <button on:click={() => {toolController.show(); isVisible = toolController.visible; }} class="img-button">
                 <img src="./src/resources/imgs/expand.svg" alt="expand" class="clickable-img" />
             </button>
         </div>
 	</div>
 {:else}
-    <div class="vertical {toolPosition}" style="border: {toolMessageColor} 3px solid;" transition:scale={{ duration: 500 }}>
+    <div class="vertical {toolController.tool.assignToolPosition(toolController.tool._toolPosition)}" style="border: {toolMessageColor} 3px solid;" transition:scale={{ duration: 500 }}>
         <div class="button-center" style="width: 30px;">
-		    <button type="button" class="hide-button img-button" on:click={() => ToolUIController.hide(toolHidden)}><img src="./src/resources/imgs/collapse.svg" style="width: 16px;" alt="collapse" class="clickable-img"/></button>
+		    <button type="button" class="hide-button img-button" on:click={() => {toolController.hide(); isVisible = toolController.visible; }}><img src="./src/resources/imgs/collapse.svg" style="width: 16px;" alt="collapse" class="clickable-img"/></button>
 		</div>
         <svg width="200" height="200" viewBox="0 0 200 240" id="angle">
 			<g id="forceps" transform="translate(100,100)">
-				<polygon points={toolAngle} fill=#ffd966 />
-                <line x1="0" y1="0" x2="0" y2="-60" stroke="black" stroke-linecap="round" stroke-width="10" transform={toolLineRight} />
-				<line x1="0" y1="0" x2="0" y2="-60" stroke="black" stroke-linecap="round" stroke-width="10" transform={toolLineLeft} />
-				<line id="arm1" x1="0" y1="0" x2="0" y2="-60" stroke="#61bbff" stroke-linecap="round" stroke-width="7" transform={toolLineRight} />
-				<line id="arm2" x1="0" y1="0" x2="0" y2="-60" stroke="#61bbff" stroke-linecap="round" stroke-width="7" transform={toolLineLeft} />             
+				<polygon points={toolController.tool._toolOpening} fill=#ffd966 />
+                <line x1="0" y1="0" x2="0" y2="-60" stroke="black" stroke-linecap="round" stroke-width="10" transform="rotate({toolController.tool._toolAngle})" />
+				<line x1="0" y1="0" x2="0" y2="-60" stroke="black" stroke-linecap="round" stroke-width="10" transform="rotate(-{toolController.tool._toolAngle})" />
+				<line id="arm1" x1="0" y1="0" x2="0" y2="-60" stroke="#61bbff" stroke-linecap="round" stroke-width="7" transform="rotate({toolController.tool._toolAngle})" />
+				<line id="arm2" x1="0" y1="0" x2="0" y2="-60" stroke="#61bbff" stroke-linecap="round" stroke-width="7" transform="rotate(-{toolController.tool._toolAngle})" />             
 			</g>
 		</svg>
         <img src="./src/resources/imgs/minun.png" alt="expand" class="minus" />
-        <input type="range" min="0" max="15" disabled bind:value={toolDepth} id="depth" style="width: 100px;">
+        <input type="range" min="0" max="15" disabled bind:value={toolController.tool._toolDepth} id="depth" style="width: 100px;">
         <img src="./src/resources/imgs/plus.svg" alt="expand" class="plus" />
         <p class="number" style="background-color: {toolMessageColor};">{toolNumber}</p>
 	</div> 

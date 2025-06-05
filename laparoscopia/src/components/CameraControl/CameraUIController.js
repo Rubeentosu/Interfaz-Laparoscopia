@@ -2,7 +2,7 @@ import { writable } from "svelte/store";
 
 export let cameraHidden = writable(false);
 
-export class CameraControl {
+export class CameraUIController {
 	constructor(cameraDepth) {
 		this._cameraDepth = cameraDepth;
 		this._cameraPosition = 0;

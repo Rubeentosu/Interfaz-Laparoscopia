@@ -1,11 +1,11 @@
 import { writable } from "svelte/store";
-import { ToolData } from './ToolData.js';
-import { ConsoleMessage } from './ConsoleMessage.js';
-import { MessageType } from './ConsoleMessage.js';
-import { CameraControl } from './CameraControl.js';
+import { ToolData } from '../components/ToolControl/ToolData.js';
+import { ConsoleMessage } from '../components/MessagesContainerControl/ConsoleMessage.js';
+import { MessageType } from '../components/MessagesContainerControl/ConsoleMessage.js';
+import { CameraUIController } from '../components/CameraControl/CameraUIController.js';
 import { SocketManager } from './SocketManager.js';
 
-export const cameraControl = writable(new CameraControl(10));
+export const cameraControl = writable(new CameraUIController(10));
 export const tools = writable([
 	new ToolData(0, 0, 1),
 	new ToolData(0, 0, 2),
@@ -39,7 +39,7 @@ socketManager.onTool((data) => {
 });
 
 socketManager.onCamera((data) => {
-	cameraControl.set(new CameraControl(data));
+	cameraControl.set(new CameraUIController(data));
 });
 
 socketManager.onMessages((data) => {

@@ -1,6 +1,6 @@
 <script>
     import { slide } from "svelte/transition";
-	import { ConsoleMessageUIController } from "../lib/ConsoleMessageUIController";
+	import { ConsoleMessageUIController } from "./ConsoleMessageUIController";
 	export let messages;
 
 </script>

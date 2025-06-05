@@ -1,6 +1,6 @@
 <script>
     import { scale } from "svelte/transition";
-    import { CameraControl, cameraHidden } from "../lib/CameraControl";
+    import { CameraUIController, cameraHidden } from "./CameraUIController";
 
     export let cameraDepth;
     export let cameraMessageColor;
@@ -9,7 +9,7 @@
 {#if $cameraHidden}
 	<div class="camera-expand" style="border: 3px solid {cameraMessageColor};" transition:scale={{ duration: 500 }}>
         <div class="button-center">
-            <button on:click={CameraControl.show} class="img-button">
+            <button on:click={CameraUIController.show} class="img-button">
                 <img src="./src/resources/imgs/expand.svg" alt="expand" class="clickable-img" />
             </button>
         </div>
@@ -17,7 +17,7 @@
 {:else}
 <div class="camera" style="border: 3px solid {cameraMessageColor};">
     <div class="button-center" style="width: 30px;" transition:scale={{ duration: 100 }}>
-        <button type="button" on:click={CameraControl.hide} class="hide-button img-button"><img src="./src/resources/imgs/collapse.svg" style="width: 16px;" alt="collapse" class="clickable-img"/></button>
+        <button type="button" on:click={CameraUIController.hide} class="hide-button img-button"><img src="./src/resources/imgs/collapse.svg" style="width: 16px;" alt="collapse" class="clickable-img"/></button>
     </div>
     <img src="./src/resources/imgs/minun.png" alt="expand" class="minus" />
     <input type="range" min="0" max="15" bind:value={cameraDepth} id="camera" disabled style="width: 160px;"/> 
