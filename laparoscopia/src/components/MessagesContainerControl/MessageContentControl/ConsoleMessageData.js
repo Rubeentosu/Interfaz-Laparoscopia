@@ -1,5 +1,3 @@
-let messageIdCounter = 0;
-
 export class ConsoleMessageData {
     constructor(text, type, position) {
         this._text = text;
@@ -18,18 +16,6 @@ export class ConsoleMessageData {
     }
     get position() {
         return this._position;
-    }
-    deleteMessage(array){
-        array.shift();
-        return array;
-    }
-    addMessage(array){
-        array.push(this);
-        return array;
-    }
-    static deleteAllMessage(array){
-        array.length = 0;
-        return array;
     }
 }
 export class MessageType{
