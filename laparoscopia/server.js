@@ -9,7 +9,7 @@ const io = new Server(server, {
   },
 });
 
-const text = [["This is an example of an error messagemmmmmmmmmccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "error"], ["This is an example of a warning message", "warning"],["This is an example of an info message", "info"]];
+const text = [["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse urna magna, pharetra sed elit nec, placerat vehicula ligula. Quisque vel lectus a tortor pharetra porttitor. Quisque suscipit ultrices nisl. Curabitur imperdiet, augue finibus dictum auctor, justo sapien iaculis dolor, ac blandit ipsum sem ut dui. Nulla viverra mattis eleifend. Quisque luctus aliquam faucibus. Nam urna elit, laoreet vel ullamcorper eu, volutpat vel lectus. Fusce pellentesque mollis metus sed condimentum.", "error"], ["This is an example of a warning message", "warning"],["This is an example of an info message", "info"]];
 
 function randomtoolPositionGeneratorTest() {
   return Math.floor(Math.random() * 2);
