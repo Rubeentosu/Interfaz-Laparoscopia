@@ -78,7 +78,7 @@
 		}
 
 		const messageData = new ConsoleMessageData(item.message, messageTypeInstance, item.toolPosition);
-		const messageInstance = new ConsoleMessageUIController(messageData); // sigue creando objetos individuales
+		const messageInstance = new ConsoleMessageUIController(messageData); 
 
 		messageInstance.addMessage(updatedMessages);
 	}
