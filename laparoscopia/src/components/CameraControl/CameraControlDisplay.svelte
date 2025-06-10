@@ -1,29 +1,50 @@
 <script>
     import { scale } from "svelte/transition";
-    import { CameraControl, cameraHidden } from "../lib/CameraControl";
+    import { CameraUIController } from "./CameraUIController";
 
-    export let cameraDepth;
     export let cameraMessageColor;
+    export let cameraController;
+    if(!(cameraController instanceof CameraUIController)){
+        throw new Error("Controller of CameraControlDisplay must be a CameraUIController");
+    }
+    let isVisible = cameraController.visible;
 
 </script>
-{#if $cameraHidden}
-	<div class="camera-expand" style="border: 2px solid {cameraMessageColor};" transition:scale={{ duration: 500 }}>
+{#if !isVisible}
+	<div class="camera-expand" style="border: 3px solid {cameraMessageColor};" transition:scale={{ duration: 500 }}>
         <div class="button-center">
-            <button on:click={CameraControl.show} class="img-button">
+            <button on:click={() => {cameraController.showCamera(); isVisible = cameraController.visible; }} class="img-button">
                 <img src="./src/resources/imgs/expand.svg" alt="expand" class="clickable-img" />
             </button>
         </div>
 	</div>
 {:else}
-<div class="camera" style="border: 2px solid {cameraMessageColor};">
+<div class="camera" style="border: 3px solid {cameraMessageColor};">
     <div class="button-center" style="width: 30px;" transition:scale={{ duration: 100 }}>
-        <button type="button" on:click={CameraControl.hide} class="hide-button img-button"><img src="./src/resources/imgs/collapse.svg" style="width: 16px;" alt="collapse" class="clickable-img"/></button>
+        <button type="button" on:click={() => {cameraController.hideCamera(); isVisible = cameraController.visible; }} class="hide-button img-button"><img src="./src/resources/imgs/collapse.svg" style="width: 16px;" alt="collapse" class="clickable-img"/></button>
     </div>
-    <input type="range" min="0" max="15" bind:value={cameraDepth} id="camera" disabled style="width: 160px;"/> 
-    <div class="camera-icon" style="background-color: {cameraMessageColor};"><img src="./src/resources/imgs/camera-svgrepo-com.svg" alt="" style="width: 16px;"></div>
+    <img src="./src/resources/imgs/minun.png" alt="expand" class="minus" />
+    <input type="range" min="0" max="15" bind:value={cameraController.camera._cameraDepth} id="camera" disabled style="width: 160px;"/> 
+    <img src="./src/resources/imgs/plus.svg" alt="expand" class="plus" />
+    <div class="camera-icon" style="background-color: {cameraMessageColor};">
+        {#if cameraMessageColor === "#ff723e"}
+        ⨉
+        {:else}
+            <i class="fa-solid fa-camera"></i> 
+        {/if}
+    </div>
+    
 </div>
 {/if}
 <style>
+    .minus{
+        width: 18px;
+        height: 18px;
+    }
+    .plus{
+        width: 18px;
+        height: 18px;        
+    }
     .camera {
         position: absolute;
         bottom: 0.3%;
@@ -46,11 +67,12 @@
         font-weight: bold;
         color: black;
         background-color: #B2FFD6;
+        font-size: 14px;
         display: flex;
         align-items: center;
         justify-content: center;   
         z-index: 10;
-        left: 15px;
+        left: 16px;
     }
     .camera-expand {
         padding: 7px 9px 5px 9px;

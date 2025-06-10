@@ -9,10 +9,10 @@ const io = new Server(server, {
   },
 });
 
-const text = [["This is an example of an error messagemmmmmmmmmccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc", "error"], ["This is an example of a warning message", "warning"],["This is an example of an info message", "info"]];
+const text = [["Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse urna magna, pharetra sed elit nec, placerat vehicula ligula. Quisque vel lectus a tortor pharetra porttitor. Quisque suscipit ultrices nisl. Curabitur imperdiet, augue finibus dictum auctor, justo sapien iaculis dolor, ac blandit ipsum sem ut dui. Nulla viverra mattis eleifend. Quisque luctus aliquam faucibus. Nam urna elit, laoreet vel ullamcorper eu, volutpat vel lectus. Fusce pellentesque mollis metus sed condimentum.", "error"], ["This is an example of a warning message", "warning"],["This is an example of an info message", "info"]];
 
 function randomtoolPositionGeneratorTest() {
-  return Math.floor(Math.random() * 5);
+  return Math.floor(Math.random() * 2);
 }
 
 let currentDepthTool1 = 0;
@@ -97,9 +97,9 @@ io.on('connection', (socket) => {
   setInterval(() => {
     const tool = [
       { depth: nextDepthTool1(), angle: nextAngleTool1(), position: 1},
-      { depth: nextDepthTool2(), angle: nextAngleTool2(), position: 2},
       { depth: nextDepthTool3(), angle: nextAngleTool3(), position: 3},
-      { depth: nextDepthTool4(), angle: nextAngleTool4(), position: 4},
+      { depth: nextDepthTool2(), angle: nextAngleTool2(), position: 4},
+      { depth: nextDepthTool4(), angle: nextAngleTool4(), position: 2},
     ];
 
     socket.emit('tool', tool);
@@ -117,7 +117,7 @@ io.on('connection', (socket) => {
       {message: text[1][0],  type: text[1][1], toolPosition: 2},
       {message: text[2][0],  type: text[2][1], toolPosition: 3},
       {message: text[2][0],  type: text[2][1], toolPosition: 4},
-      {message: text[2][0],  type: text[2][1], toolPosition: 0},  
+      {message: text[0][0],  type: text[0][1], toolPosition: 0},  
       {message: text[0][0],  type: text[0][1], toolPosition: 1},
       ];
     socket.emit('messages', messages);

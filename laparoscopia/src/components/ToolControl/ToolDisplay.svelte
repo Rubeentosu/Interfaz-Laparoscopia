@@ -1,43 +1,65 @@
 <script>
-    import { ToolUIController } from '../lib/ToolUIController';
+    import { ToolUIController } from './ToolUIController';
     import { scale } from 'svelte/transition';
-    export let toolHidden;
-	export let toolDepth;
-	export let toolPosition;
-	export let toolNumber;
-	export let toolAngle;
-	export let toolLineLeft;
-	export let toolLineRight;
     export let toolMessageColor;
+    export let toolNumber;
+    export let toolController;
+    if(!(toolController instanceof ToolUIController)){
+        throw new Error("Controller of ToolDisplay must be a ToolUIController");
+    }
+    let isVisible = toolController.visible;
 </script>
 
-{#if $toolHidden}
-	<div class="vertical-expand {toolPosition}" style="border: {toolMessageColor} 2px solid;" transition:scale={{ duration: 500 }}>
+{#if !isVisible}
+	<div class="vertical-expand {toolController.assignToolPosition(toolController.tool._toolPosition)}" style="border: {toolMessageColor} 3px solid;" transition:scale={{ duration: 500 }}>
         <div class="button-center">
-            <button on:click={() => ToolUIController.show(toolHidden)} class="img-button">
+            <button on:click={() => {toolController.showTool(); isVisible = toolController.visible; }} class="img-button">
                 <img src="./src/resources/imgs/expand.svg" alt="expand" class="clickable-img" />
             </button>
         </div>
 	</div>
 {:else}
-    <div class="vertical {toolPosition}" style="border: {toolMessageColor} 2px solid;" transition:scale={{ duration: 500 }}>
+    <div class="vertical {toolController.assignToolPosition(toolController.tool._toolPosition)}" style="border: {toolMessageColor} 3px solid;" transition:scale={{ duration: 500 }}>
         <div class="button-center" style="width: 30px;">
-		    <button type="button" class="hide-button img-button" on:click={() => ToolUIController.hide(toolHidden)}><img src="./src/resources/imgs/collapse.svg" style="width: 16px;" alt="collapse" class="clickable-img"/></button>
+		    <button type="button" class="hide-button img-button" on:click={() => {toolController.hideTool(); isVisible = toolController.visible; }}><img src="./src/resources/imgs/collapse.svg" style="width: 16px;" alt="collapse" class="clickable-img"/></button>
 		</div>
         <svg width="200" height="200" viewBox="0 0 200 240" id="angle">
 			<g id="forceps" transform="translate(100,100)">
-				<polygon points={toolAngle} fill=#ffd966 />
-                <line x1="0" y1="0" x2="0" y2="-60" stroke="black" stroke-linecap="round" stroke-width="10" transform={toolLineRight} />
-				<line x1="0" y1="0" x2="0" y2="-60" stroke="black" stroke-linecap="round" stroke-width="10" transform={toolLineLeft} />
-				<line id="arm1" x1="0" y1="0" x2="0" y2="-60" stroke="#61bbff" stroke-linecap="round" stroke-width="7" transform={toolLineRight} />
-				<line id="arm2" x1="0" y1="0" x2="0" y2="-60" stroke="#61bbff" stroke-linecap="round" stroke-width="7" transform={toolLineLeft} />             
+				<polygon points={toolController.tool._toolOpening} fill=#ffd966 />
+                <line x1="0" y1="0" x2="0" y2="-60" stroke="black" stroke-linecap="round" stroke-width="10" transform="rotate({toolController.tool._toolAngle})" />
+				<line x1="0" y1="0" x2="0" y2="-60" stroke="black" stroke-linecap="round" stroke-width="10" transform="rotate(-{toolController.tool._toolAngle})" />
+				<line id="arm1" x1="0" y1="0" x2="0" y2="-60" stroke="#61bbff" stroke-linecap="round" stroke-width="7" transform="rotate({toolController.tool._toolAngle})" />
+				<line id="arm2" x1="0" y1="0" x2="0" y2="-60" stroke="#61bbff" stroke-linecap="round" stroke-width="7" transform="rotate(-{toolController.tool._toolAngle})" />             
 			</g>
 		</svg>
-		<input type="range" min="0" max="15" disabled bind:value={toolDepth} id="depth" style="width: 100px;">
-		<p class="number" style="background-color: {toolMessageColor};">{toolNumber}</p>
+        <img src="./src/resources/imgs/minun.png" alt="expand" class="minus" />
+        <input type="range" min="0" max="15" disabled bind:value={toolController.tool._toolDepth} id="depth" style="width: 100px;">
+        <img src="./src/resources/imgs/plus.svg" alt="expand" class="plus" />
+        <p class="number" style="background-color: {toolMessageColor};">{toolNumber}</p>
 	</div> 
 {/if}
 <style>
+    .minus{
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 37%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .plus{
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        bottom: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #angle{
+        position: relative;
+        bottom: 10px;
+        left: 0px;
+    }
     .vertical-expand {
         padding: 12px 12px 8px 12px;
         border-radius: 15px;
@@ -51,7 +73,7 @@
         padding: 15px;
         border-radius: 15px;
         background-color: #0703033a;
-        height: 200px;
+        height: 218px;
         width: 30px;
         display: flex;
         flex-direction: column;
@@ -74,6 +96,7 @@
         border-radius: 4px;
         width: 80%;
         position: relative;
+        bottom: 6%;
         border: 1.5px solid black;
         transform: rotate(-270deg);
     }
@@ -102,9 +125,10 @@
         width: 50%;
         font-weight: bold;
         color: black;
+        font-size: 14px;
         text-align: center;
         z-index: 10;
-        bottom: -43px;
+        bottom: -41px;
     }
 
     .img-button {
@@ -137,21 +161,21 @@
     .top-right {
         position: absolute;
         top: 9%;
-        right: 0.3%;
+        right: 0.4%;
     }
     .top-left {
         position: absolute;
         top: 9%;
-        left: 0.3%;
+        left: 0.4%;
     }
     .bottom-left {
         position: absolute;
         top: 45%;
-        left: 0.3%;
+        left: 0.4%;
     }
     .bottom-right {
         position: absolute;
         top: 45%;
-        right: 0.3%;
+        right: 0.4%;
     }
 </style>
