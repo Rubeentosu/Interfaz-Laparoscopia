@@ -13,7 +13,7 @@
 {#if !isVisible}
 	<div class="camera-expand" style="border: 3px solid {cameraMessageColor};" transition:scale={{ duration: 500 }}>
         <div class="button-center">
-            <button on:click={() => {cameraController.hideCamera(); isVisible = cameraController.visible; }} class="img-button">
+            <button on:click={() => {cameraController.showCamera(); isVisible = cameraController.visible; }} class="img-button">
                 <img src="./src/resources/imgs/expand.svg" alt="expand" class="clickable-img" />
             </button>
         </div>
