@@ -70,21 +70,21 @@
 		}
 
 		if (messageTypeInstance === MessageType.error) {
-			item.message = "❌ " + item.message;
+			item.text = "❌ " + item.text;
 		} else if (messageTypeInstance === MessageType.warning) {
-			item.message = "⚠️ " + item.message;
+			item.text = "⚠️ " + item.text;
 		} else {
-			item.message = "ℹ️ " + item.message;
+			item.text = "ℹ️ " + item.text;
 		}
 
-		const messageData = new ConsoleMessageData(item.message, messageTypeInstance, item.toolPosition);
+		const messageData = new ConsoleMessageData(item.text, messageTypeInstance, item.toolPosition);
 		const messageInstance = new ConsoleMessageUIController(messageData); 
 
 		messageInstance.addMessage(updatedMessages);
 	}
 
 	message.set(updatedMessages.slice(0, 5)); 
-});	
+	});	
 </script>
 
 <MessageContainer messages = {$message} />

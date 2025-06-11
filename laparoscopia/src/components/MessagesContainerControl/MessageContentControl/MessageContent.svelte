@@ -34,7 +34,7 @@
     color: white;
     padding: 6px 10px;
     border-radius: 6px;
-    max-width: 400px;       
+    max-width: 370px;       
     width: max-content;    
     top: 50%;
     left: 108%;            

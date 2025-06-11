@@ -1,8 +1,20 @@
 export class ToolData {
     constructor(toolDepth, toolAngle, toolPosition) {
-        this._toolDepth = toolDepth;
-        this._toolAngle = toolAngle;
-		this._toolPosition = toolPosition;
+		if (toolDepth < 0 || toolDepth > 15) {
+			throw new Error("The Tool Depth must be a number between 0 and 15");
+		}else{
+			this._toolDepth = toolDepth;	
+		}
+		if (toolAngle < 0 || toolAngle > 90) {
+			throw new Error("The Tool Angle must be a number between 0 and 90");
+		}else{
+			this._toolAngle = toolAngle;
+		}
+		if(toolPosition > 4 || toolPosition < 1){
+			throw new Error("The Tool Positon must be a number between 1 and 4");
+		}else{
+			this._toolPosition = toolPosition;
+		}
         this._toolOpening = this.openingAngle();
 	}
 	get toolDepth() {
