@@ -1,10 +1,10 @@
-import { writable } from "svelte/store";
-
-export let cameraHidden = writable(false);
-
 export class CameraControllerData {
 	constructor(cameraDepth) {
-		this._cameraDepth = cameraDepth;
+		if (cameraDepth < 0 || cameraDepth > 15) {
+			throw new Error("The Camera Depth must be a number between 0 and 15");
+		}else{
+			this._cameraDepth = cameraDepth;
+		}
 		this._cameraPosition = 0;
 	}
 	get cameraDepth() {
