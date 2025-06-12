@@ -1,6 +1,10 @@
 <script>
     import { scale } from "svelte/transition";
     import { CameraUIController } from "./CameraUIController";
+    import expand from "../../resources/imgs/expand.svg";
+    import collapse from "../../resources/imgs/collapse.svg";
+    import minus from "../../resources/imgs/minun.svg";
+    import plus from "../../resources/imgs/plus.svg";
 
     export let cameraMessageColor;
     export let cameraController;
@@ -14,18 +18,18 @@
 	<div class="camera-expand" style="border: 3px solid {cameraMessageColor};" transition:scale={{ duration: 500 }}>
         <div class="button-center">
             <button on:click={() => {cameraController.showCamera(); isVisible = cameraController.visible; }} class="img-button">
-                <img src="./src/resources/imgs/expand.svg" alt="expand" class="clickable-img" />
+                <img src={expand} alt="expand" class="clickable-img" />
             </button>
         </div>
 	</div>
 {:else}
 <div class="camera" style="border: 3px solid {cameraMessageColor};">
     <div class="button-center" style="width: 30px;" transition:scale={{ duration: 100 }}>
-        <button type="button" on:click={() => {cameraController.hideCamera(); isVisible = cameraController.visible; }} class="hide-button img-button"><img src="./src/resources/imgs/collapse.svg" style="width: 16px;" alt="collapse" class="clickable-img"/></button>
+        <button type="button" on:click={() => {cameraController.hideCamera(); isVisible = cameraController.visible; }} class="hide-button img-button"><img src={collapse} style="width: 16px;" alt="collapse" class="clickable-img"/></button>
     </div>
-    <img src="./src/resources/imgs/minun.png" alt="expand" class="minus" />
+    <img src={minus} alt="expand" class="minus" />
     <input type="range" min="0" max="15" bind:value={cameraController.camera._cameraDepth} id="camera" disabled style="width: 160px;"/> 
-    <img src="./src/resources/imgs/plus.svg" alt="expand" class="plus" />
+    <img src={plus} alt="expand" class="plus" />
     <div class="camera-icon" style="background-color: {cameraMessageColor};">
         {#if cameraMessageColor === "#ff723e"}
         ⨉

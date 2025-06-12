@@ -1,6 +1,10 @@
 <script>
     import { ToolUIController } from './ToolUIController';
     import { scale } from 'svelte/transition';
+    import expand from "../../resources/imgs/expand.svg";
+    import collapse from "../../resources/imgs/collapse.svg";
+    import minus from "../../resources/imgs/minun.svg";
+    import plus from "../../resources/imgs/plus.svg";
     export let toolMessageColor;
     export let toolNumber;
     export let toolController;
@@ -14,14 +18,14 @@
 	<div class="vertical-expand {toolController.assignToolPosition(toolController.tool._toolPosition)}" style="border: {toolMessageColor} 3px solid;" transition:scale={{ duration: 500 }}>
         <div class="button-center">
             <button on:click={() => {toolController.showTool(); isVisible = toolController.visible; }} class="img-button">
-                <img src="./src/resources/imgs/expand.svg" alt="expand" class="clickable-img" />
+                <img src={expand} alt="expand" class="clickable-img" />
             </button>
         </div>
 	</div>
 {:else}
     <div class="vertical {toolController.assignToolPosition(toolController.tool._toolPosition)}" style="border: {toolMessageColor} 3px solid;" transition:scale={{ duration: 500 }}>
         <div class="button-center" style="width: 30px;">
-		    <button type="button" class="hide-button img-button" on:click={() => {toolController.hideTool(); isVisible = toolController.visible; }}><img src="./src/resources/imgs/collapse.svg" style="width: 16px;" alt="collapse" class="clickable-img"/></button>
+		    <button type="button" class="hide-button img-button" on:click={() => {toolController.hideTool(); isVisible = toolController.visible; }}><img src={collapse} style="width: 16px;" alt="collapse" class="clickable-img"/></button>
 		</div>
         <svg width="200" height="200" viewBox="0 0 200 240" id="angle">
 			<g id="forceps" transform="translate(100,100)">
@@ -32,9 +36,9 @@
 				<line id="arm2" x1="0" y1="0" x2="0" y2="-60" stroke="#61bbff" stroke-linecap="round" stroke-width="7" transform="rotate(-{toolController.tool._toolAngle})" />             
 			</g>
 		</svg>
-        <img src="./src/resources/imgs/minun.png" alt="expand" class="minus" />
+        <img src={minus} alt="expand" class="minus" />
         <input type="range" min="0" max="15" disabled bind:value={toolController.tool._toolDepth} id="depth" style="width: 100px;">
-        <img src="./src/resources/imgs/plus.svg" alt="expand" class="plus" />
+        <img src={plus} alt="expand" class="plus" />
         <p class="number" style="background-color: {toolMessageColor};">{toolNumber}</p>
 	</div> 
 {/if}
